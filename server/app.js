@@ -41,7 +41,7 @@ app.use('/api/v1', cart);
 /*var log = console.log;
 console.log = function () {
   log.apply(console, arguments);
-  console.trace();
+  console. trace();
 };*/
 
 // need for production if node serves static file if node and frontend run together
