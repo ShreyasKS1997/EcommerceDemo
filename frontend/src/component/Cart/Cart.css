@@ -1,0 +1,165 @@
+.emptyCart {
+  margin: auto;
+  text-align: center;
+  padding: 10vmax;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  color: rgb(248, 54, 54);
+}
+
+.emptyCart > a {
+  background-color: var(--primary-color);
+  border-radius: 10px;
+  color: white;
+  border: none;
+  padding: 1vmax 3vmax;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+}
+
+.emptyCart > a:hover {
+  background-color: var(--secondary-hover);
+}
+
+.cartPage {
+  padding: 5vmax;
+  color: rgba(0, 0, 0, 0.767);
+}
+
+.cartHeader {
+  background-color: var(--primary-color);
+  box-sizing: border-box;
+  color: white;
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 1fr;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+
+}
+.cartHeader > p {
+  margin: 10px;
+}
+.cartHeader > p:last-child {
+  text-align: end;
+}
+
+.cartContainerWrap {
+  border: 3px solid var(--primary-color);
+}
+
+.cartContainer {
+  border-top: 2px solid var(--primary-color);
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 1fr;
+  position: relative;
+}
+
+.cartCenterStyle {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 10px;
+  font-family: 'Robodo', Arial, Helvetica, sans-serif;
+}
+
+.cartInput {
+  display: flex;
+  align-items: center;
+  height: 8vmax;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 12px;
+}
+
+.cartInput > button {
+  border: none;
+  background-color: rgba(0, 0, 0, 0.616);
+  padding: 0.5vmax;
+  cursor: pointer;
+  color: white;
+  transition: all 0.5s;
+}
+.cartInput > button:hover {
+  background-color: rgba(0, 0, 0, 0.767);
+}
+
+.cartInput > input {
+  border: none;
+  padding: 0.5vmax;
+  text-align: center;
+  outline: none;
+}
+
+@supports(field-sizing: content) {
+  .cartInput > input {
+    field-sizing: content;
+  }
+}
+
+.cartSubtotal {
+  display: flex;
+  padding: 0.5vmax;
+  height: 8vmax;
+  align-items: center;
+  box-sizing: border-box;
+  justify-content: flex-end;
+  font-family: 'Robodo', Arial, Helvetica, sans-serif;
+}
+
+.updateCartbutton {
+  display: flex;
+  justify-content: flex-end;
+  border-top: 2px solid var(--primary-color);
+}
+
+.updateCartbutton > button {
+  border: none;
+  padding: 0.8vmax 2vmax;
+  margin: 10px;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 5px;
+}
+
+.updateCartbutton > button:hover {
+  background-color: var(--secondary-hover);
+  cursor: pointer;
+}
+
+.cartGrossProfit {
+  margin-left: 66%;
+}
+
+.cartGrossProfitBox {
+  box-sizing: border-box;
+  padding: 2vmax 0.5vmax;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 3px solid var(--primary-color);
+  border-left: 3px solid var(--primary-color);
+  border-right: 3px solid var(--primary-color);
+  font-family: 'Robodo', Arial, Helvetica, sans-serif;
+}
+
+.checkOutBtn {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+.checkOutBtn > button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.8vmax 2vmax;
+  margin-top: 1vmax;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.checkOutBtn > button:hover {
+  background-color: var(--secondary-hover);
+}

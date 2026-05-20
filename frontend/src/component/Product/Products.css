@@ -1,0 +1,122 @@
+.productsContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.productsHeading {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.171);
+  color: rgba(0, 0, 0, 0.678);
+  text-align: left;
+  width: 100%;
+  margin: 2vmax 0;
+  padding-bottom: 0.5vmax;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+}
+
+.productsPaginationWrap {
+  width: 100%;
+}
+
+.products {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  min-height: 30vh;
+  margin-left: 40px;
+}
+
+.productsList {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  box-sizing: border-box;
+}
+
+.paginationBox {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0;
+  font-family: 'Robodo', Arial, Helvetica, sans-serif;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.page-item {
+  background-color: rgb(255, 255, 255);
+  list-style: none;
+  border: 1px solid rgba(0, 0, 0, 0.178);
+  padding: 1vmax 1.5vmax;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.page-item:first-child {
+  border-radius: 5px 0 0 5px;
+}
+
+.page-item:last-child {
+  border-radius: 0 5px 5px 0;
+}
+.page-link {
+  text-decoration: none;
+  color: rgb(80, 80, 80);
+  transition: all 0.3s;
+}
+
+.page-item:hover {
+  background-color: rgb(230, 230, 230);
+}
+
+.page-item:hover .page-link {
+  color: rgb(0, 0, 0);
+}
+
+.pageItemActive {
+  background-color: tomato;
+}
+
+.pageLinkActive {
+  color: white;
+}
+
+.filterBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  box-shadow: -5px 4px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 30px;
+  gap: 5px;
+}
+
+.category {
+  padding: 20px 30px 0 30px;
+  border-top: 1px solid grey;
+}
+
+.categoryBox {
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  padding: 10px 10px 30px 10px;
+}
+
+.category-link {
+  list-style: none;
+  color: rgba(0, 0, 0, 0.61);
+  margin: 0.4vmax;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.ratings {
+  border: 1px solid rgba(0, 0, 0, 0.329);
+  margin: 10px;
+}

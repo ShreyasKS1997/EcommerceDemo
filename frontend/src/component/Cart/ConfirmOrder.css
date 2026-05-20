@@ -1,0 +1,123 @@
+.confirmOrderPage {
+  background-color: rgb(236, 236, 236);
+  display: grid;
+  grid-template-columns: 6fr 3fr;
+}
+
+.confirmOrderPage > div:last-child {
+  border-left: 1px solid rgba(0, 0, 0, 0.247);
+}
+
+.confirmshippingArea,
+.confirmCartItems {
+  margin: 50px;
+  padding: 30px 40px 10px;
+  background-color: white;
+  box-shadow: 0 0 10px -2px grey;
+}
+
+.confirmCartItems > p {
+  text-decoration: underline;
+}
+
+.confirmshippingArea > p {
+  text-decoration: underline;
+}
+
+.confirmshippingAreaBox > div {
+  display: flex;
+  margin: 10px 0;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+.confirmshippingAreaBox > div > p {
+  color: black;
+}
+.confirmshippingAreaBox > div > p:last-child {
+  margin: 0 5px;
+  color: #575757;
+  font-size: 14px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.confirmCartItemsContainer {
+  max-height: 20vmax;
+  overflow-y: auto;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+.confirmCartItemsContainer > div {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 5fr 2fr;
+  margin: 20px 0;
+}
+
+.confirmCartItemsContainer > div > img {
+  width: 50px;
+}
+
+.confirmCartItemsContainer > div > a {
+  color: #575757;
+  text-decoration: none;
+}
+
+.confirmCartItemsContainer > div > span {
+  color: #5e5e5e;
+}
+
+.confirmCartItemsContainer > div > span > b {
+  margin-left: 5px;
+}
+
+.orderSummary {
+  margin: 60px;
+  padding: 40px;
+  background-color: white;
+  box-shadow: 0 0 10px -2px grey;
+}
+
+.orderSummary > p {
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.267);
+  padding: 1vmax;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.orderSummary > div {
+  font-family: 'Robodo', Arial, Helvetica, sans-serif;
+}
+
+.orderSummary > div > div {
+  display: flex;
+  justify-content: space-between;
+  margin: 2vmax 0;
+}
+.orderSummary > div > div > span {
+  color: rgba(0, 0, 0, 0.692);
+}
+
+.orderSummaryTotal {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid rgba(0, 0, 0, 0.363);
+  padding: 2vmax 0;
+}
+
+.orderSummary > button {
+  background-color: var(--primary-color);
+  color: white;
+  width: 100%;
+  padding: 1vmax;
+  border: none;
+  margin: auto;
+  cursor: pointer;
+  transition: 0.2s;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif !important;
+}
+
+.orderSummary > button:hover {
+  background-color: var(--secondary-hover);
+}

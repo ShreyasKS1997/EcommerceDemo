@@ -1,0 +1,29 @@
+.reviewCard {
+  flex: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.226);
+  border: 1px solid rgba(56, 56, 56, 0.116);
+  width: 30vmax;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1vmax;
+  padding: 3vmax;
+}
+
+.reviewCard > img {
+  width: 5vmax;
+}
+
+.reviewCard > p {
+  color: rgba(0, 0, 0, 0.836);
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+}
+.reviewCardComment {
+  width: 100%;
+  margin-top: 10px;
+  word-wrap: break-word;
+  color: rgba(0, 0, 0, 0.445);
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}

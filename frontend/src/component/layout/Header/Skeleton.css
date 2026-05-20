@@ -1,0 +1,23 @@
+.skeleton {
+    display: flex;
+    height: 1em;
+    width: 70px;
+    overflow: hidden;
+
+    border-radius: 6px;
+}
+
+.skeletonChild {
+    content: "";
+    height: 100%;
+    width: 100%;
+    transform: translateX(-100%);
+    background-image: linear-gradient(to right, #53535300 0%, #ffffff0c 20%, #cccccc28 60%, #cccccc0a 100%);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    100% {
+        transform: translateX(100%);
+    }
+}

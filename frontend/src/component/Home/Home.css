@@ -1,0 +1,71 @@
+.banner {
+  background-image: url('/cover.jfif');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vmin;
+  position: relative;
+}
+
+.bannerContainer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: rgb(203, 233, 248);
+}
+
+.bannerContainer > h1,
+.bannerContainer > h2 {
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+.bannerContainer > a > button {
+  margin-bottom: 5vmax;
+  cursor: pointer;
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 0;
+  padding: 1vmax;
+  transition: all 0.2s;
+  width: 9vmax;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+}
+
+.bannerContainer > a > button:hover {
+  background-color: rgba(255, 255, 255, 0);
+  color: white;
+}
+
+.banner::after {
+  content: '';
+  width: 100vw;
+  height: 100vmin;
+  background-color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  clip-path: polygon(100% 68%, 0 100%, 100% 100%);
+  max-width: 100%;
+}
+
+.homeHeading {
+  text-align: center;
+  border-bottom: 1px solid rgba(21, 21, 21, 0.5);
+  width: 20vmax;
+  padding: 1vmax;
+  margin: 0 auto;
+  color: rgb(0, 0, 0, 0.7);
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  margin: 2vmax auto;
+  width: 80vw;
+  flex-wrap: wrap;
+  max-width: 100%;
+}

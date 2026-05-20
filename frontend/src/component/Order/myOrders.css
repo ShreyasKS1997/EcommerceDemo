@@ -1,0 +1,21 @@
+.myOrdersPage {
+  width: 100vw;
+  max-width: 100%;
+  padding: 20px 7vmax;
+  box-sizing: border-box;
+  background-color: rgb(235, 235, 235);
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.myOrdersPage > p {
+  font-size: 20px;
+}
+
+#myOrdersHeading {
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  color: rgb(71, 71, 71);
+}

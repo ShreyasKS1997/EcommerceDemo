@@ -1,0 +1,356 @@
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.navBarCustom, .navBarSearchboxWrap{
+    position: relative;
+}
+
+.LocationInfo, .navBarSearchboxWrap {
+    display: flex;
+}
+
+.navBarCustom, .nav-links, .nav-link-item {
+    display: flex;
+    align-items: center;
+}
+
+.navBarCustom {
+    width: 100%;
+    box-sizing: border-box;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    background-color: rgba(13, 48, 66, 0.9);
+    color: rgb(199, 199, 199);
+    user-select: none;
+}
+
+.companyLogoNav {
+    display: flex;
+    align-items: center;
+    margin: 0 20px;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.navBarSearchboxWrap {
+    flex-grow: 1;
+    margin: 13px 40px;
+}
+
+.navBarSearchboxForm {
+    display: flex;
+    align-items: center;
+    width: 100%; 
+}
+
+.navBarSearchbox {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 7px;
+    border: 1px solid #ccc;
+}
+
+.searchIcon {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    line-height: 0;
+}
+
+.searchIcon > button {
+    background-color: transparent;
+    border: none;
+    color: gray;
+    line-height: 0;
+}
+
+.suggestionBox {
+    position: absolute;
+    height: 0;
+    visibility: hidden;
+    max-height: 70vh;
+    width: 100%;
+    z-index: 1000;
+    background-color: white;
+    top: 115%;
+    padding: 20px;
+    color: black;
+    border-radius: 4px 4px 10px 10px;
+    box-shadow: 0 4px 12px 5px rgba(0, 0, 0, 0.1);
+}
+
+.suggestionItem {
+    display: flex;
+    justify-content: stretch;
+    height: 50px;
+    width: 100%;
+    margin: 10px 0;
+    gap: 5px;
+    padding: 2px;
+    transition: background-color 0.2s;
+}
+
+.suggestionItem:hover, .suggestionItem.active {
+    cursor: pointer;
+    background-color: rgba(92, 113, 235, 0.1);
+}
+
+.tumbnailPrev {
+    width: 50px;
+    background-color: lightgray;
+    padding: 5px;
+}
+
+.tumbnailPrev img {
+    width: auto;
+    height: 100%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.descPrev {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+}
+
+.price {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+.noItem {
+    color: rgb(65, 65, 65);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.seeAllResults {
+    width: 100%;
+    text-align: center;
+}
+
+.seeAllResults > button {
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    width: 100%;
+    border: none;
+    background-color: white;
+    border-top: 1px solid rgb(165, 165, 165);
+    padding-top: 10px;
+    margin-top: 10px;
+}
+
+.seeAllResults > button:hover {
+    cursor: pointer;
+}
+
+.navBarSearchbox:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+    border: 1px solid rgba(81, 203, 238, 1);
+}
+
+.nav-link-item {
+    box-sizing: border-box;
+    padding: 5px;
+    border-radius: 5px;
+    height: 100%;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+
+.nav-link-item > svg {
+    margin-right: 5px;
+}
+
+.nav-link-item-sub {
+    padding: 6px 10px;
+    border-radius: 5px;
+    transition: background-color 0.1s, box-shadow 0.3s;
+}
+
+.nav-link-item-sub:hover {
+    cursor: pointer;
+    background-color: var(--primary-hover);
+    box-shadow: 0 0 0 2px var(--shadow-color);
+}
+
+.accountLoginSignup {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    gap: 5px;
+    line-height: 0;
+}
+
+.nav-link-item-acc {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+.accountLoginSignup:hover {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+}
+
+.accountLoginSignup:hover .userMenuContainer{
+    visibility: visible;
+    opacity: 1;
+}
+
+.accountLoginSignup:hover .nav-link-item-acc {
+    cursor: pointer;
+    background-color: var(--primary-hover);
+    box-shadow: 0 0 0 2px rgb(66, 82, 173);
+}
+
+.nav-link-item-acc:hover ~ .userMenuContainer, .userMenuContainer:hover {
+    visibility: visible;
+    opacity: 1;
+    cursor: pointer;
+}
+
+.locationBoxLabel {
+    margin-bottom: 5px;
+}
+
+.LocationInfo {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.locationSub > svg {
+    height: 15px;
+}
+
+.locationSub {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.stateAreaPincode {
+    white-space: nowrap;
+}
+
+.changeLocationBox::before {
+    content: "";
+    border-width: 0 10px 10px 10px;
+    border-style: solid;
+    border-color: transparent transparent rgb(67, 84, 179) transparent;
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+.changeLocationBox {
+    box-sizing: border-box;
+    position: absolute;
+    top: 101%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px 5px rgba(0, 0, 0, 0.1);
+    gap: 5px;
+    background-color: var(--primary-color);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+}
+
+.LocationInfo:hover .locationInfoSub {
+    cursor: pointer;
+    background-color: var(--primary-hover);
+    box-shadow: 0 0 0 2px rgb(66, 82, 173);
+}
+
+.LocationInfo:hover .changeLocationBox {
+    visibility: visible;
+    opacity: 1;
+}
+
+.locationInfoSub:hover ~ .changeLocationBox, .changeLocationBox:hover {
+    visibility: visible;
+    opacity: 1;
+}
+
+.locationBoxInput {
+    display: flex;
+    box-sizing: border-box;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.locationBoxInput:focus {
+    outline: none;
+    box-shadow: 0 0 3px rgba(81, 203, 238, 1);
+    border: 1px solid rgba(81, 203, 238, 1);
+}
+
+.locationBoxSubmit {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: rgb(71, 102, 255);
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.locationBoxSubmit:hover {
+    background-color: rgb(33, 52, 135);
+}
+
+.cartItems {
+    position: absolute;
+    left: 15px;
+    top: -5px;
+    width: 15px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;;
+    text-align: center;
+    transition: all 0.5s ease;
+    line-height: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    padding: 2px;
+}
+
+.cartInfo {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    gap: 5px;
+    line-height: 0;
+}

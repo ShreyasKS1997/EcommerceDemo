@@ -1,0 +1,68 @@
+.dashboard {
+  display: flex;
+  flex-direction: row;
+}
+
+.dashboardContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #e4e4e4;
+}
+
+.note {
+  margin: 10px 0 0 10px;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+}
+
+.dashboardSummary {
+  display: flex;
+  flex-direction: row;
+  background-color: rgba(70, 117, 218, 0.842);
+  justify-content: space-evenly;
+  padding: 20px;
+  margin: 10px 10px 0 10px;
+  border: 2px solid rgba(70, 117, 218);
+  border-radius: 10px;
+}
+
+.dashboardSummaryElement {
+  background-color: rgb(255, 233, 174);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 20px;
+  width: 12%;
+  font-family: 'Robodo', Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.836);
+}
+
+.charts {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 10px;
+}
+
+.lineChart {
+  width: calc(70% - 5px);
+  background-color: rgba(70, 117, 218, 0.842);
+  margin: 5px;
+  padding: 20px;
+  border: 2px solid rgba(70, 117, 218);
+  border-radius: 10px;
+}
+
+.doughnutChart {
+  width: calc(30% - 5px);
+  background-color: rgba(70, 117, 218, 0.842);
+  margin: 5px;
+  display: flex;
+  align-items: center;
+  border: 2px solid rgba(70, 117, 218);
+  border-radius: 10px;
+}

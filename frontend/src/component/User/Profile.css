@@ -1,0 +1,201 @@
+.profileContainer {
+  display: flex;
+  max-width: 100%;
+  background-color: rgb(224, 224, 224);
+}
+
+.profileContainer > div {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  max-width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 3px 2px rgb(236, 236, 236);
+  padding: 15px;
+  margin: 25px;
+  background-color: white;
+}
+
+.profileContainer > div:first-child > h1 {
+  color: rgba(0, 0, 0, 0.555);
+  transform: translateX(-10vmax) translateY(-2vmax);
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+}
+
+.profileContainer > div:first-child > img {
+  width: 20vmax;
+  border-radius: 100%;
+  transition: all 0.5s;
+}
+
+.profileContainer > div:first-child > img:hover {
+  transform: scale(1.05);
+}
+
+.profileContainer > div:first-child > a {
+  border: none;
+  color: white;
+  text-decoration: none;
+  padding: 0.8vmax;
+  width: 30%;
+  margin: 2vmax 0 1vmax;
+  text-align: center;
+  transition: all 0.2s;
+  background-color: var(--primary-color);
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  border-radius: 10px;
+}
+
+.profileContainer > div:first-child > a:hover {
+  background-color: var(--secondary-hover);
+}
+
+.deleteAccount {
+  background-color: var(--primary-color);
+  border: none;
+  padding: 15px;
+  border-radius: 0.5vw;
+  color: white;
+  font-size: 1.3vw;
+  font-weight: 600;
+}
+
+.deleteAccount:hover {
+  cursor: pointer;
+  background-color: var(--secondary-hover);
+}
+
+.deleteAccountConfirmDialog.close {
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 0.1s ease, transform 0s ease 0.1s;
+}
+
+.deleteAccountConfirmDialog.open {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.deleteAccountConfirmDialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.61);
+  transition: opacity 0.1s ease;
+  overflow: hidden;
+}
+
+.dialogInner.close {
+  transform: scale(0.8);
+  opacity: 0;
+  transition: transform 0.1s ease, opacity 0s ease 0.1s;
+}
+
+.dialogInner.open {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.dialogInner {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 30px 50px 20px;
+  gap: 20px;
+  border-radius: 20px;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  box-shadow: 0 0 3px 2px white;
+  transition: transform 0.1s ease;
+}
+
+.dialogInner > div {
+  display: flex;
+  gap: 10px;
+}
+
+.dialogInner > div > button {
+  background-color: var(--primary-color);
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  padding: 10px;
+  border: 0;
+  border-radius: 10px;
+  font-family: 'montserrat', Arial, Helvetica, sans-serif;
+  color: white;
+}
+
+.dialogInner > div > button:hover {
+  cursor: pointer;
+  background-color: var(--secondary-hover);
+}
+
+.profileContainer > div:last-child {
+  justify-content: space-evenly;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.nameEmailJoined {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.nameEmailJoined > div > h4 {
+  color: rgba(0, 0, 0, 0.705);
+  text-align: left;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+}
+
+.nameEmailJoined > div > p {
+  color: rgba(0, 0, 0, 0.616);
+  margin-top: 1vh;
+  text-align: left;
+  font-family: 'Robodo', Arial, Helvetica, sans-serif;
+}
+
+.profileContainer > div:last-child > div:last-child {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+}
+
+.profileContainer > div:last-child > div:last-child > a {
+  border: none;
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  padding: 0.5vmax;
+  text-align: center;
+  transition: all 0.2s;
+  margin: 1vmax 0;
+  font-family: 'Robodo', Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+.profileContainer > div:last-child > div:last-child > a:hover {
+  background-color: var(--secondary-hover);
+}
+
+.testData {
+  display: grid;
+  grid-template-columns: max-content auto;
+  width: 50%;
+  border: 1px solid gray;
+  box-shadow: 0px 0 6px gray;
+  padding: 30px 10px;
+}
+
+.testData > dd, dt {
+  overflow-wrap: anywhere;
+  padding: 10px;
+}

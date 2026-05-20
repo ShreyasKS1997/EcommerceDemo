@@ -1,0 +1,51 @@
+.productCard {
+  width: 14vmax;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: rgb(48, 48, 48);
+  margin: 0.5vmax;
+  transition: all 0.1s;
+  padding-bottom: 0.5vmax;
+  box-sizing: border-box;
+  align-items: stretch;
+  justify-content: stretch;
+  border: 1px solid rgba(75, 74, 74, 0.1);
+}
+
+.productCard > img {
+  width: 14vmax;
+  height: 14vmax;
+  object-fit: contain;
+  padding: 10px;
+}
+
+.productCard > div {
+  margin: 0.5vmax;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.productCardSpan {
+  margin: 0.3vmax;
+  font-family: 'Roboto';
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.productCard > p {
+  margin: 1vmax 0.5vmax;
+  margin-bottom: 0;
+  font-family: 'Inter';
+}
+
+.productCard > span {
+  margin: 0.5vmax;
+  font-family: 'Roboto';
+}
+
+.productCard:hover {
+  box-shadow: 0 0 10px rgba(15, 15, 15, 0.1);
+  transform: translateY(-0.1vmax);
+}

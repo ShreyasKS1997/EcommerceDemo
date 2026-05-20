@@ -1,0 +1,62 @@
+.notification {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex-direction: column;
+    overflow-x: hidden;
+    position: absolute;
+    right: 0;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+}
+.notificationBody {
+    padding: 10px 0;
+    line-height: 0;
+    color: white;
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+    transform: translateX(150%);
+    animation-name: notiAnim;
+    animation-duration: 5s;
+}
+
+@keyframes notiAnim {
+    10% {
+        transform: translateX(0);
+    }
+    90% {
+        transform: translateX(0);
+    }
+}
+
+.notificationBodyError {
+    background-image: linear-gradient(to bottom,
+        rgba(223, 0, 0, 0.4) 0%, rgba(215,0,0) 20%, rgba(215, 0, 0) 80%, rgba(223, 0, 0, 0.4) 100%
+    );
+}
+.notificationBodySuccess{
+    background-image: linear-gradient(to bottom,
+        rgba(0, 223, 0, 0.4) 0%, rgba(0,215,0) 20%, rgba(0, 215, 0) 80%, rgba(0, 223, 0, 0.4) 100%
+    );
+}
+.notificationBodyInfo {
+     background-image: linear-gradient(to bottom,
+        rgba(0, 59, 223, 0.4) 0%, rgba(0,59, 215) 20%, rgba(0, 59, 215) 80%, rgba(0, 59, 223, 0.4) 100%
+    );
+}
+
+.notificationText {
+    border-right: 1px solid rgb(102, 102, 102);
+    display: flex;
+    align-items: center;
+    padding-right: 20px;
+}
+.notificationBody > svg {
+    box-sizing: content-box;
+    padding: 5px 5px;
+    margin: 0 10px;
+}
+.notificationBody > svg:hover {
+    background-color: rgb(179, 30, 30);
+    cursor: pointer;
+}

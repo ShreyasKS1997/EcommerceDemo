@@ -1,0 +1,101 @@
+.updateProfileContainer {
+  box-sizing: border-box;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(231, 231, 231);
+  padding: 60px 0;
+}
+
+.updateProfileBox {
+  background-color: white;
+  width: 25vw;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.updateProfileHeading {
+  text-align: center;
+  color: rgba(0, 0, 0, 0.664);
+  padding: 1.3vmax;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+}
+
+.updateProfileForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  padding: 0 2vmax 2vmax;
+  justify-content: space-evenly;
+  height: 70%;
+  transition: all 0.2s;
+}
+
+.updateProfileForm > div {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  margin: 10px;
+}
+
+.updateProfileForm > div > input {
+  padding: 1vmax 4vmax;
+  padding-right: 1vmax;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.267);
+  border-radius: 4px;
+  outline: none;
+}
+
+.updateProfileForm > div > svg {
+  position: absolute;
+  transform: translateX(1vmax);
+  color: rgba(0, 0, 0, 0.623);
+}
+
+#updateProfileImage > img {
+  width: 3vmax;
+  margin: 1vmax;
+}
+#updateProfileImage > input {
+  display: flex;
+  padding: 0%;
+}
+
+#updateProfileImage > input::file-selector-button {
+  cursor: pointer;
+  width: 100%;
+  z-index: 2;
+  height: 5vh;
+  border: none;
+  margin: 0%;
+  transition: all 0.2s;
+  padding: 0 1vmax;
+  color: rgba(0, 0, 0, 0.623);
+  background-color: rgb(255, 255, 255);
+}
+
+#updateProfileImage > input::file-selector-button:hover {
+  background-color: rgb(235, 235, 235);
+}
+
+.updateProfileBtn {
+  border: none;
+  color: white;
+  background-color: var(--primary-color);
+  width: 100%;
+  padding: 0.8vmax;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 4px;
+  outline: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.219);
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+}
+
+.updateProfileBtn:hover {
+  background-color: var(--secondary-hover);
+}

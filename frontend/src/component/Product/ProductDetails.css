@@ -1,0 +1,187 @@
+.productDetails {
+  width: 100%;
+  padding: 2vmax;
+  box-sizing: border-box;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.carouselImageBlock {
+  border: 1px solid white;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.CarouselImage {
+  width: 400px;
+  height: 280px;
+}
+
+.detailsBlockMain {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  padding: 2vmax;
+  box-sizing: border-box;
+  border: 1px solid white;
+}
+
+.productName > h2 {
+  color: rgb(54, 54, 54);
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+}
+
+.productName > p {
+  margin: 5px 0;
+  color: rgba(54, 54, 54, 0.582);
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+.ratingsTop {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-top: 1px solid rgba(0, 0, 0, 0.205);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.205);
+  width: 100%;
+  padding: 1vmax 0;
+}
+
+.numOfReviews {
+  margin-left: 10px;
+  color: rgba(0, 0, 0, 0.699);
+  font-family: Arial, Helvetica, sans-serif;
+  white-space: nowrap;
+}
+
+.priceAddToCartStatus > h2 {
+  color: rgb(37, 37, 37);
+  margin-top: 20px;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+}
+
+.priceAddToCartStatus > p {
+  border-top: 1px solid rgba(0, 0, 0, 0.205);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.205);
+  padding: 1vmax 0;
+  color: rgba(0, 0, 0, 0.651);
+  margin: 1vmax 0;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+.addToCart {
+  display: flex;
+  align-items: center;
+}
+
+.increaseDecreaseQuantity > button {
+  border: none;
+  background-color: rgba(0, 0, 0, 0.616);
+  padding: 0.5vmax;
+  cursor: pointer;
+  color: white;
+  transition: all 0.5s;
+}
+
+.increaseDecreaseQuantity > button:hover {
+  background-color: rgba(0, 0, 0, 0.767);
+}
+
+.increaseDecreaseQuantity > input {
+  border: none;
+  text-align: center;
+  outline: none;
+  color: rgba(0, 0, 0, 0.74);
+  margin: 5px;
+  padding: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@supports(field-sizing: content) {
+  .increaseDecreaseQuantity > input {
+    field-sizing: content;
+  }
+}
+
+.addToCart > button:last-child {
+  border: none;
+  cursor: pointer;
+  color: white;
+  transition: all 0.2s;
+  background-color: var(--primary-color);
+  border-radius: 8px;
+  padding: 0.5vmax 2vmax;
+  margin: 1vmax;
+  outline: none;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+}
+
+.addToCart > button:last-child:hover {
+  background-color: var(--secondary-hover);
+}
+
+.productDesc {
+  color: rgba(0, 0, 0, 0.897);
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+.submitReview {
+  border: none;
+  border-radius: 8px;
+  padding: 0.6vmax 2vmax;
+  margin-top: 20px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  outline: none;
+  background-color: var(--primary-color);
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+}
+
+.submitReview:hover {
+  background-color: var(--secondary-hover);
+}
+
+.submitDialog {
+  display: flex;
+  flex-direction: column;
+}
+
+.submitDialogTextArea {
+  border: 1px solid rgba(0, 0, 0, 0.082);
+  margin: 1vmax 0;
+  outline: none;
+  padding: 1rem;
+}
+
+.reviewsSection {
+  margin-bottom: 5vmax;
+}
+
+.reviews {
+  display: flex;
+  overflow: auto;
+  margin: 2vmax;
+}
+
+.reviewsHeading {
+  color: #000000be;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.226);
+  padding: 1vmax;
+  width: 20vmax;
+  margin: auto;
+  margin-bottom: 4vmax;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+}
+
+.noReviews {
+  text-align: center;
+  font-family: 'Robodo', Arial, Helvetica, sans-serif;
+  color: rgba(0, 0, 0, 0.548);
+}

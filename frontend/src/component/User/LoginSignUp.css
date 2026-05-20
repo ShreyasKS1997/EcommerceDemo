@@ -1,0 +1,166 @@
+.LoginSignUpContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(231, 231, 231);
+  padding: 4vmax 0;
+}
+
+.LoginSignUpBox {
+  background-color: white;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  box-shadow: 0 0 10px -2px grey;
+}
+
+.longinSignUpWrap {
+  position: relative;
+}
+
+
+.login_signUp_toggle {
+  display: flex;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+}
+.login_signUp_toggle > p {
+  color: rgba(0, 0, 0, 0.678);
+  transition: all 0.5s;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  padding: 15px;
+}
+
+.LoginSignUpBox > div > button {
+  height: 3px;
+  width: 50%;
+  border: none;
+  transition: all 0.5s;
+}
+
+.loginForm,
+.signUpForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  padding: 40px;
+  justify-content: space-evenly;
+  transition: all 0.5s;
+  gap: 15px;
+}
+
+.signUpForm {
+  transform: translateX(-100vmax);
+  position: absolute;
+}
+
+.loginForm > div,
+.signUpForm > div {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+.loginForm > div > input,
+.signUpForm > div > input {
+  padding: 1vmax 4vmax;
+  padding-right: 1vmax;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.267);
+  border-radius: 4px;
+  outline: none;
+  color: rgb(61, 61, 61);
+  font-family: 'Robodo', Arial, Helvetica, sans-serif;
+}
+
+.loginForm > div > svg,
+.signUpForm > div > svg {
+  position: absolute;
+  transform: translateX(1vmax);
+  color: rgba(0, 0, 0, 0.623);
+}
+
+.loginForm > a {
+  color: rgba(0, 0, 0, 0.651);
+  text-decoration: none;
+  align-self: flex-end;
+  transition: all 0.2s;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}
+
+.loginForm > a:hover {
+  color: black;
+}
+
+#registerImage > img {
+  width: 3vmax;
+  border-radius: 100%;
+  margin-right: 10px;
+}
+#registerImage > input {
+  display: flex;
+  padding: 0%;
+}
+
+#registerImage > input::file-selector-button {
+  cursor: pointer;
+  width: 100%;
+  z-index: 2;
+  height: 5vh;
+  border: none;
+  margin: 0%;
+  transition: all 0.5s;
+  padding: 0 1vmax;
+  color: rgba(0, 0, 0, 0.623);
+  background-color: rgb(255, 255, 255);
+}
+
+#registerImage > input::file-selector-button:hover {
+  background-color: rgb(235, 235, 235);
+}
+
+.loginBtn,
+.signUpBtn {
+  border: none;
+  color: white;
+  width: 100%;
+  padding: 0.8vmax;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 4px;
+  outline: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.219);
+  background-color: var(--primary-color);
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+}
+
+.loginBtn:hover,
+.signUpBtn:hover {
+  background-color: var(--secondary-hover);
+}
+
+.shiftToLeft {
+  transform: translateX(-100%);
+  position: absolute;
+}
+
+.shiftToNeutral {
+  transform: translateX(0%);
+  background-color: var(--primary-color);
+}
+
+.shiftToRight {
+  transform: translateX(100%);
+  background-color: var(--primary-color);
+}
+
+.shiftToNeutralForm {
+  transform: translateX(0%);
+  position: relative;
+}

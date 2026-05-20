@@ -1,0 +1,34 @@
+.CartItemCard {
+  display: flex;
+  padding: 1vmax;
+  height: 8vmax;
+  align-items: center;
+  box-sizing: border-box;
+}
+.CartItemCard > img {
+  width: 5vmax;
+}
+
+.CartItemCard > div {
+  display: flex;
+  margin: 0.3vmax 1vmax;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.CartItemCard > div > a {
+  color: rgba(24, 24, 24, 0.815);
+  text-decoration: none;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+}
+
+.CartItemCard > div > p {
+  cursor: pointer;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  text-decoration: underline;
+}
+
+.CartItemCard > div > p:hover {
+  color: var(--primary-color);
+}

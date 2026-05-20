@@ -1,0 +1,45 @@
+.productReviewsContainer {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: rgb(255, 255, 255);
+  border-left: 1px solid rgba(0, 0, 0, 0.158);
+  padding: 20px 50px;
+}
+
+.productReviewsForm {
+  width: 20rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  padding: 3vmax;
+  background-color: white;
+}
+
+.productReviewsFormHeading {
+  color: rgba(0, 0, 0, 0.733);
+  text-align: center;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+}
+
+.productReviewsForm > div {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  margin: 2rem;
+}
+.productReviewsForm > div > input {
+  padding: 1vmax 4vmax;
+  padding-right: 1vmax;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.267);
+  border-radius: 4px;
+  outline: none;
+}
+
+.productReviewsForm > div > svg {
+  position: absolute;
+  transform: translateX(1vmax);
+  color: rgba(0, 0, 0, 0.623);
+}

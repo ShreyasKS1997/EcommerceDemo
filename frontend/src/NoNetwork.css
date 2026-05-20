@@ -1,0 +1,17 @@
+.noNetwork {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    gap: 20px;
+    font-family: 'Robodo', Arial, Helvetica, sans-serif;
+    color: rgb(75, 75, 75);
+}
+
+.noNetwork > svg {
+    width: 70px;
+    height: 70px;
+    color: red;
+}

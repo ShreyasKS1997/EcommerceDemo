@@ -1,0 +1,80 @@
+footer {
+  display: flex;
+  align-items: center;
+  color: white;
+  background-color: rgb(34, 33, 33);
+  padding: 2vmax;
+}
+
+.leftFooter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.leftFooter > h3 {
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+}
+
+.leftFooter > p {
+  margin-top: 0.5vmax;
+  text-align: center;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  font-size: 13px;
+}
+
+.leftFooter > div {
+  display: flex;
+  flex-direction: row;
+}
+
+.leftFooter > div > img {
+  background-color: grey;
+  border-radius: 5px;
+  width: 25px;
+  margin: 10px;
+  display: flex;
+  cursor: pointer;
+}
+
+.midFooter {
+  width: 60%;
+  text-align: center;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+}
+
+.midFooter > h1 {
+  color: #eb4034;
+}
+
+.midFooter > p {
+  max-width: 60%;
+  margin: 1vmax auto;
+}
+
+.rightFooter {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: white;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+}
+
+.rightFooter > a {
+  text-decoration: underline;
+}
+
+.socialIcons {
+  display: flex;
+  flex-direction: row;
+  gap: 1vmax;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.socialIcons > img {
+  width: 20px;
+  height: 15px;
+  cursor: pointer;
+}

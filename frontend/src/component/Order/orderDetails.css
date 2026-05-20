@@ -1,0 +1,62 @@
+.orderDetailsPage {
+  background-color: white;
+}
+
+.orderDetailsContainer > h1 {
+  margin: 4vmax 0;
+  color: var(--primary-color);
+}
+
+.orderDetailsContainer {
+  padding: 0 5vmax;
+  padding-bottom: 0%;
+}
+
+.orderDetailsContainerBox,
+.orderDetailsCartItemsContainer {
+  margin: 2vmax;
+}
+
+.orderDetailsContainerBox > div {
+  display: flex;
+  margin: 1vmax 0;
+  align-items: flex-end;
+}
+
+.orderDetailsContainerBox > div > p {
+  color: black;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+}
+.orderDetailsContainerBox > div > span {
+  margin: 0 1vmax;
+  color: #575757;
+  font-family: 'Robodo', Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+.orderDetailsCartItems {
+  padding: 2vmax 5vmax;
+  border-top: 1px solid rgba(0, 0, 0, 0.164);
+}
+
+.orderDetailsCartItemsContainer > div {
+  display: flex;
+  align-items: center;
+  margin: 2vmax 0;
+  font-family: 'Robodo', Arial, Helvetica, sans-serif;
+}
+
+.orderDetailsCartItemsContainer > div > img {
+  width: 3vmax;
+}
+
+.orderDetailsCartItemsContainer > div > a {
+  color: #575757;
+  margin: 0 2vmax;
+  width: 60%;
+  text-decoration: none;
+}
+
+.orderDetailsCartItemsContainer > div > span {
+  color: #5e5e5e;
+}

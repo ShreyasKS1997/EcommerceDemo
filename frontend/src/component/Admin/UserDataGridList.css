@@ -1,0 +1,107 @@
+/*orderlist.jsx, productlist.jsx, userslist.jsx*/
+.productListContainer {
+  box-sizing: border-box;
+  border-left: 1px solid rgba(0, 0, 0, 0.158);
+  width: 100%;
+  padding: 20px;
+}
+
+#productListHeading {
+  padding: 0.5vmax;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.637);
+  transition: all 0.5s;
+  margin: 2rem;
+  text-align: center;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+}
+/*orderlist.jsx,  productlist.jsx, userslist.jsx*/
+
+/*productlist.jsx*/
+.productListContainer > h3 {
+  margin-bottom: 10px;
+  font-family: 'Robodo', Arial, Helvetica, sans-serif;
+}
+/*productlist.jsx*/
+
+
+/* usersList.jsx */
+.autoGenerateTestUsersButton {
+  text-align: center;
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.inputBox {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.inputBox > input {
+  text-align: center;
+  height: 100%;
+  padding: 15px;
+  user-select: none;
+  border-radius: 5px;
+  border: 2px solid grey;
+}
+
+.inputDecrease {
+  position: absolute;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  margin-left: 4px;
+}
+
+.inputIncrease {
+  position: absolute;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  margin-right: 4px;
+}
+
+.inputDecrease::after,
+.inputDecrease::before,
+.inputIncrease::after,
+.inputIncrease::before {
+  position: absolute;
+  content: '';
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: grey;
+}
+
+.inputDecrease::before,
+.inputIncrease::before {
+  width: 100%;
+  height: 2px;
+}
+
+.inputIncrease::after {
+  width: 2px;
+  height: 100%;
+}
+
+.inputDecrease:hover,
+.inputIncrease:hover {
+  cursor: pointer;
+}
+
+.autoGenerateTestUsersButton > button {
+  border: none;
+  background-color: var(--primary-color);
+  padding: 10px 20px;
+  color: white;
+  border-radius: 10px;
+}
+.autoGenerateTestUsersButton > button:hover {
+  background-color: var(--primary-hover);
+  cursor: pointer;
+}
+/* usersList.jsx */

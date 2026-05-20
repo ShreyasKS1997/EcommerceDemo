@@ -1,0 +1,39 @@
+.sidebar svg {
+  margin-right: 10px;
+}
+
+.sidebarActive {
+  background-color: rgb(67, 84, 179);
+  color: white;
+}
+
+.sidebarInactive {
+  background-color: white;
+  color: black;
+}
+
+.sidebar {
+  box-sizing: border-box;
+  user-select: none;
+  min-width: 200px;
+  padding: 30px 0;
+}
+
+.sideBarButton {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 25px;
+  transition: all 0.2s;
+  font-family: 'Robodo', Arial, Helvetica, sans-serif;
+}
+
+.expandcontractButton {
+  width: 100%;
+}
+
+.sideBarButton:hover {
+  background-color: rgba(67, 84, 179, 0.4);
+  color: black;
+  cursor: pointer;
+}
