@@ -9,6 +9,8 @@ export const Notification = ({id, message, errorType = 'info'}) => {
 
     const dispatch = useDispatch();
 
+    const handleCloseButtonClick = () => dispatch(removeNotification(id));
+
     useEffect(() => {
         const timeoutId = setTimeout(() => {
             dispatch(removeNotification(id));
@@ -28,7 +30,7 @@ export const Notification = ({id, message, errorType = 'info'}) => {
                 {errorType === 'error' && <ErrorOutline/>}
                 {errorType === 'info' && <InfoOutlined/>}
                 <div className='notificationText'>{message}</div>
-                <GridCloseIcon/>
+                <GridCloseIcon onClick={handleCloseButtonClick} />
             </div>
         </>
     );

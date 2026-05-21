@@ -52,6 +52,7 @@ const userApi = api.injectEndpoints({
                 body: body,
                 FormData: true,
             }),
+            invalidatesTags: ['refreshTestUsers']
         }),
         logout: builder.mutation({
             query: () => ({
@@ -80,7 +81,7 @@ const userApi = api.injectEndpoints({
             transformResponse: (resData, meta, arg) => {
                 return resData.testUsers;
             },
-            providesTags: ['refreshTestUsers'],
+            providesTags: ['refreshTestUsers']
         }),
         deleteTestUser: builder.mutation({
             query: (id) => ({

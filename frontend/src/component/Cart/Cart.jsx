@@ -8,6 +8,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useGetCartItemsQuery, useRemoveCartItemsMutation, useReplaceQuantityMutation, useUpdateCartMutation } from '../../Services/cartApi';
 import Loader from '../layout/loader/loader';
 import { changeQuantity, removeFromCart } from '../../SliceThunks/cartSliceThunks';
+import { skipToken } from '@reduxjs/toolkit/query';
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const Cart = () => {
    
   const dispatch = useDispatch();
   // cart data is stored in redux state 'cart' as soon as it fetches inside onQuerystarted
-  const {data: {cartItems:serverCartItems} = {}, isLoading, refetch} = useGetCartItemsQuery();
+  const {data: {cartItems:serverCartItems} = {}, isLoading} = useGetCartItemsQuery(authStatus !== 'authenticated' && skipToken);
   const {cartItems:localCartItems} = useSelector((state) => state.cart);
   const [updateCartItems, {isLoading: updateCartLoading}] = useUpdateCartMutation();
   const [replaceItems, {isLoading: replaceItemsLoading}] = useReplaceQuantityMutation();
