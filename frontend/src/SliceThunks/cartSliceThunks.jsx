@@ -3,13 +3,22 @@ import { logoutAll } from "./userSliceThunks";
 
 const cartSlice = createSlice({
     name: 'cart',
-    initialState: {},
+    initialState: {
+        cartItems: {},
+    },
     reducers: {
         addToCart: (state, action) => {
             if (!state.cartItems) {
                 state.cartItems = {}
             };
-            Object.assign(state.cartItems, action.payload);
+            const key = action.payload.id;
+            const existingItem = Object.keys(state.cartItems).find((item) => item === key);
+            console.log(action.payload.id)
+            if (existingItem) {
+                state.cartItems[key].quantity += action.payload[key].quantity;
+            } else {
+                state.cartItems[key] = action.payload[key];
+            }
         },
         removeFromCart: (state, action) => {
             delete state.cartItems[action.payload];

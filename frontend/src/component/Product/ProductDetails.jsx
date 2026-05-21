@@ -52,7 +52,7 @@ const ProductDetails = () => {
         await addToCart(
           {
             cartItems: {
-              [params.id]: quantity
+              [product._id]: quantity
             }
           }
         );
@@ -62,7 +62,8 @@ const ProductDetails = () => {
     } else {
       dispatch(addToCartLocal(
         {
-          [params.id]: {
+          id: product._id,
+          [product._id]: {
             name: product.name,
             price: product.price,
             stock: product.stock,
