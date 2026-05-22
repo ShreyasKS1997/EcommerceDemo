@@ -15,6 +15,7 @@ const Home = () => {
       <MetaData title="Home Page" />
       <div className="banner">
         <div className='bannerContainer'>
+          <h1>This is a demo E-Commerce website</h1>
           <h1>Welcome to Ecommerce</h1>
           <h2>FIND AMAZING PRODUCTS BELOW</h2>
 
