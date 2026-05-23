@@ -29,12 +29,18 @@ export const Navbar = () => {
     const navigate = useNavigate();
     const suggestionBoxRef = useRef(null);
     const searchTimeoutRef = useRef(null);
+    const [navLinksopen, SetNavLinksOpen] = useState(false);
 
     const authStatus = useSelector((state) => state.auth.status);
     useGetCartItemsQuery(undefined, {skip: authStatus === 'unauthenticated'});
     const {cartItems} = useSelector((state) => state.cart);
     const {data:user, isLoading, isFetching, error:loadUserError} = useLoadUserQuery(undefined, {skip: authStatus === 'unauthenticated'});
     const [logout] = useLogoutMutation();
+
+    const handleOpenNavLinkBoxCLick = (e) => {
+        e.preventDefault();
+        SetNavLinksOpen(!navLinksopen);
+    }
 
     // Search Debouncing Function Main
     const handleOnChangeKeywordFunc = async (e, ms) => {
@@ -149,6 +155,7 @@ export const Navbar = () => {
 
     return (
         <nav className="navBarCustom">
+            <button onClick={handleOpenNavLinkBoxCLick} className='openCloseNavbutton'></button>
             {/* ---------------------------------------------- Company Logo -------------------------------------------------*/}
             <a href="/" className="companyLogoNav">ECOMMERCE</a>
 
@@ -171,11 +178,15 @@ export const Navbar = () => {
 
 
             {/* ---------------------------------------------- Navigation Links -------------------------------------------------*/}
-            <div className="nav-links">     
+            <div className={`nav-links ${!navLinksopen ? 'nav-links-hidden' : ''}`}>     
 
-                {user && user.role !== 'user' && <button onClick={(e) => exitTestAdminOrUserMode(e)}>{user.role === "test_admin" ? 'Exit test admin' : 'Exit test user'}</button>}
+
+                <button onClick={handleOpenNavLinkBoxCLick} className='openCloseNavbutton'></button>
+
+                {user && user.role !== 'user' && <button className="exitTestAdminUser" onClick={(e) => exitTestAdminOrUserMode(e)}>{user.role === "test_admin" ? 'Exit test admin' : 'Exit test user'}</button>}
 
                 {/* ------------------------------- Location Section -------------------------------------- */}
+                    
                     <div className="nav-link-item LocationInfo">
                         {/* TODO: Create Selection of Location feature */}
                         <div className="nav-link-item-sub locationInfoSub">

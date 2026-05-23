@@ -7,8 +7,8 @@ import Loader from '../layout/loader/loader';
 import { useGetAllProductsQuery } from '../../Services/productApi.jsx';
 
 const Home = () => {
-  const dispatch = useDispatch();
-  const {data:{products, productCount, resultPerPage, filteredProductsCount} = {}, isLoading, isError, isSuccess, refetch} = useGetAllProductsQuery();
+
+  const {data:{products} = {}, isLoading, isError} = useGetAllProductsQuery();
 
   return (
     <>

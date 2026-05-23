@@ -71,10 +71,22 @@ footer {
   gap: 1vmax;
   margin-top: 5px;
   margin-bottom: 10px;
+  flex-wrap: wrap;
 }
 
 .socialIcons > img {
   width: 20px;
   height: 15px;
   cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+  footer {
+    flex-direction: column;
+  }
+
+  footer > div {
+    margin: 1rem;
+  }
+
 }
