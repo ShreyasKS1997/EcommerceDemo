@@ -4,7 +4,6 @@
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vmin;
-  min-width: 430px;
   min-height: 400px;
   position: relative;
 }
@@ -72,7 +71,6 @@
   width: 80vw;
   flex-wrap: wrap;
   max-width: 100%;
-  min-width: 430px;
 }
 
 @media screen and (max-width: 430px) {
