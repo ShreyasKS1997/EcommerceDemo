@@ -4,6 +4,7 @@ footer {
   color: white;
   background-color: rgb(34, 33, 33);
   padding: 2vmax;
+  vertical-align: bottom;
 }
 
 .leftFooter {

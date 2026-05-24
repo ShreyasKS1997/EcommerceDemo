@@ -29,6 +29,7 @@ a {
     background-color: rgba(13, 48, 66, 0.9);
     color: rgb(199, 199, 199);
     user-select: none;
+    z-index: 2;
 }
 
 .companyLogoNav {
@@ -242,9 +243,9 @@ a {
     margin: 15px;
     border: none;
     background-image: 
-        linear-gradient(to right, #333, #333),
-        linear-gradient(to right, #333, #333),
-        linear-gradient(to right, #333, #333);
+        linear-gradient(to right, white, white),
+        linear-gradient(to right, white, white),
+        linear-gradient(to right, white, white);
     
     /* Sets the height and width of each line (Width Height) */
     background-size: 
@@ -439,6 +440,11 @@ a {
     .nav-links-hidden {
         transform: translateX(-100%)
     }
+
+    .cartItems {
+        top: 8px;
+        left: 25px;
+    }
 }
 
 @media screen and (max-width: 750px) {
@@ -452,4 +458,12 @@ a {
         transform: translateY(-100%);
         justify-content: center;
     }
+
+    .companyLogoNav {
+        display: flex;
+        align-items: center;
+        margin: 0 100px;
+    }
+
+
 }

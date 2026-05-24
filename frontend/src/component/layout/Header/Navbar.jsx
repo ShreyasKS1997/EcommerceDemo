@@ -155,7 +155,7 @@ export const Navbar = () => {
 
     return (
         <nav className="navBarCustom">
-            <button onClick={handleOpenNavLinkBoxCLick} className='openCloseNavbutton'></button>
+            <div onClick={handleOpenNavLinkBoxCLick} className='openCloseNavbutton'></div>
             {/* ---------------------------------------------- Company Logo -------------------------------------------------*/}
             <a href="/" className="companyLogoNav">ECOMMERCE</a>
 
@@ -181,7 +181,7 @@ export const Navbar = () => {
             <div className={`nav-links ${!navLinksopen ? 'nav-links-hidden' : ''}`}>     
 
 
-                <button onClick={handleOpenNavLinkBoxCLick} className='openCloseNavbutton'></button>
+                <div onClick={handleOpenNavLinkBoxCLick} className='openCloseNavbutton'></div>
 
                 {user && user.role !== 'user' && <button className="exitTestAdminUser" onClick={(e) => exitTestAdminOrUserMode(e)}>{user.role === "test_admin" ? 'Exit test admin' : 'Exit test user'}</button>}
 
