@@ -18,7 +18,7 @@ const Cart = () => {
   const dispatch = useDispatch();
   // cart data is stored in redux state 'cart' as soon as it fetches inside onQuerystarted
   const {data: {cartItems:serverCartItems} = {}, isLoading, isFetching} = useGetCartItemsQuery(authStatus !== 'authenticated' && skipToken);
-  const {cartItems:localCartItems} = useSelector((state) => state.cart);
+  const {cartItems:localCartItems = {}} = useSelector((state) => state.cart);
   const [updateCartItems, {isLoading: updateCartLoading}] = useUpdateCartMutation();
   const [replaceItems, {isLoading: replaceItemsLoading}] = useReplaceQuantityMutation();
   const [removeCartItems, {isLoading: removeCartItemsLoading}] = useRemoveCartItemsMutation();
@@ -75,7 +75,7 @@ const Cart = () => {
   }
 
   return (
-    Object.values(localCartItems).length <= 0 ? 
+    (!localCartItems || Object.values(localCartItems).length <= 0) ? 
     <div className='noProductsInCart'>
       <RemoveShoppingCartIcon/>
       <p>No Products in your cart</p>
