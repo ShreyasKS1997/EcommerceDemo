@@ -63,12 +63,12 @@
 .signUpForm > div {
   display: flex;
   width: 100%;
+  margin: 0.3rem;
   align-items: center;
 }
 .loginForm > div > input,
 .signUpForm > div > input {
-  padding: 1vmax 4vmax;
-  padding-right: 1vmax;
+  padding: 1rem 0.5rem 1rem 3rem;
   width: 100%;
   box-sizing: border-box;
   border: 1px solid rgba(0, 0, 0, 0.267);
@@ -99,7 +99,7 @@
 }
 
 #registerImage > img {
-  width: 3vmax;
+  width: 3rem;
   border-radius: 100%;
   margin-right: 10px;
 }
@@ -130,7 +130,7 @@
   border: none;
   color: white;
   width: 100%;
-  padding: 0.8vmax;
+  padding: 1rem;
   cursor: pointer;
   transition: all 0.2s;
   border-radius: 4px;

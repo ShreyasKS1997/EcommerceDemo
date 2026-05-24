@@ -89,7 +89,7 @@ const Cart = () => {
       <div className='cartHeader textCenter'>Quantity</div>
       <div className='cartHeader textRight'>Subtotal</div>
 
-      {Object.values(localCartItems).map((value, index) => {
+      {Object.entries(localCartItems).map(([id, value]) => {
         return (
           <div className='cartItemsCart'>
             <div className='productName'>
@@ -101,9 +101,10 @@ const Cart = () => {
             </div>
 
             <div className='productQuantity textCenter'>
-              <button onClick={() => decreaseQuantity(value._id, value.quantity)}>-</button>
+              {console.log(value)}
+              <button onClick={() => decreaseQuantity(id, value.quantity)}>-</button>
               <input min={1} max={1} type='number' value={value.quantity}/>
-              <button onClick={() => increaseQuantity(value._id, value.quantity, value.stock)}>+</button>
+              <button onClick={() => increaseQuantity(id, value.quantity, value.stock)}>+</button>
             </div>
 
             <div className='productSubTotal textRight'>
@@ -111,7 +112,7 @@ const Cart = () => {
             </div>
           </div>
         )
-      })};
+      })}
     </div>
 
       <div className='cartBlock2'>
