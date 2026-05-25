@@ -20,6 +20,13 @@ a {
     transition: transform 0.2s ease-in-out;
 }
 
+.nav-links > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
 .navBarCustom {
     width: 100%;
     box-sizing: border-box;
@@ -177,7 +184,7 @@ a {
     border-radius: 5px;
     height: 100%;
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 .nav-link-item > svg {
@@ -408,16 +415,21 @@ a {
         display: flex;
         flex-direction: column;
         z-index: 1;
-        align-items: flex-start;
-        justify-content: flex-start;
         background-color: rgba(13, 48, 66);
         height: 100vh;
         height: 100dvh;
-        box-sizing: border-box;
+        overscroll-behavior: contain;
     }
 
     .nav-links > div {
         overflow-y: auto;
+        z-index: 1;
+        display: flex;
+        flex-grow: 1;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-direction: column;
+        overscroll-behavior: contain;
     }
 
     .exitTestAdminUser{
