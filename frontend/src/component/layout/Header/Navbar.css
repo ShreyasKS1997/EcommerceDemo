@@ -20,7 +20,7 @@ a {
     transition: transform 0.2s ease-in-out;
 }
 
-.nav-links > div {
+.nav-links-main {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -415,21 +415,33 @@ a {
         display: flex;
         flex-direction: column;
         z-index: 1;
+        height: 100%;
         background-color: rgba(13, 48, 66);
-        height: 100vh;
-        height: 100lvh;
         overscroll-behavior: contain;
+        justify-content: flex-start;
+        align-items: flex-start;
     }
 
-    .nav-links > div {
+    .nav-links-background-dim {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.877);
+        z-index: 0;
+    }
+
+    .nav-links-main {
         overflow-y: auto;
         z-index: 1;
         display: flex;
-        flex-grow: 1;
         align-items: flex-start;
         justify-content: flex-start;
         flex-direction: column;
         overscroll-behavior: contain;
+        background-color: rgba(13, 48, 66);
+        height: 100%;
     }
 
     .exitTestAdminUser{
@@ -462,9 +474,14 @@ a {
         top: 8px;
         left: 25px;
     }
+
+    .changeLocationBox {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 750px) {
+
     .navBarCustom {
         display: flex;
         flex-direction: column;

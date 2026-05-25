@@ -139,6 +139,10 @@ export const Navbar = () => {
     }
 
     useEffect(() => {
+        if (navLinksopen) {
+            document.body.style.overflow = 'hidden';
+            document.getElementById('root').style.overflow = 'hidden';
+        }
         setSearchResult(products)
 
         // hide search box when clicked outside suggestion box
@@ -150,8 +154,12 @@ export const Navbar = () => {
             }
         }
         document.addEventListener('mousedown', handleClickOutside);
-        return () => {document.removeEventListener('mousedown', handleClickOutside)};
-    }, [products, dispatch]);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside)
+            document.body.style.overflow = 'unset';
+            document.getElementById('root').style.overflow = 'unset';
+        };
+    }, [products, dispatch, navLinksopen]);
 
     return (
         <nav className="navBarCustom">
@@ -178,77 +186,79 @@ export const Navbar = () => {
 
 
             {/* ---------------------------------------------- Navigation Links -------------------------------------------------*/}
-            <div className={`nav-links ${!navLinksopen ? 'nav-links-hidden' : ''}`}>     
+            <div className={`nav-links ${!navLinksopen ? 'nav-links-hidden' : ''}`}> 
 
-                <div>
+                <div className="nav-links-background-dim"></div>
+
+                <div className="nav-links-main">
 
 
-                <div onClick={handleOpenNavLinkBoxCLick} className='openCloseNavbutton'></div>
+                    <div onClick={handleOpenNavLinkBoxCLick} className='openCloseNavbutton'></div>
 
-                {user && user.role !== 'user' && <button className="exitTestAdminUser" onClick={(e) => exitTestAdminOrUserMode(e)}>{user.role === "test_admin" ? 'Exit test admin' : 'Exit test user'}</button>}
+                    {user && user.role !== 'user' && <button className="exitTestAdminUser" onClick={(e) => exitTestAdminOrUserMode(e)}>{user.role === "test_admin" ? 'Exit test admin' : 'Exit test user'}</button>}
 
-                {/* ------------------------------- Location Section -------------------------------------- */}
-                    
-                    <div className="nav-link-item LocationInfo">
-                        {/* TODO: Create Selection of Location feature */}
-                        <div className="nav-link-item-sub locationInfoSub">
-                            <div className="locationSub">
-                                Location
-                                <PlaceIcon />
+                    {/* ------------------------------- Location Section -------------------------------------- */}
+                        
+                        <div className="nav-link-item LocationInfo">
+                            {/* TODO: Create Selection of Location feature */}
+                            <div className="nav-link-item-sub locationInfoSub">
+                                <div className="locationSub">
+                                    Location
+                                    <PlaceIcon />
+                                </div>
+                                <div className="stateAreaPincode">Select your Location</div>
                             </div>
-                            <div className="stateAreaPincode">Select your Location</div>
+                            <div className="changeLocationBox">
+                                <div className="locationBoxLabel" >Enter your location</div>
+                                <input type="text" size="10" className="locationBoxInput"/>
+                                <input type="button" value="Change" className="locationBoxSubmit"/>
+                            </div>
                         </div>
-                        <div className="changeLocationBox">
-                            <div className="locationBoxLabel" >Enter your location</div>
-                            <input type="text" size="10" className="locationBoxInput"/>
-                            <input type="button" value="Change" className="locationBoxSubmit"/>
-                        </div>
+
+
+                    {/* ---------------------------------- All Products Page Link ------------------------------------- */}
+                    <a href="/products" className="nav-link-item">
+                        <div className="nav-link-item-sub">Products</div>
+                    </a>
+
+
+                    {/* ---------------------------------- Accounts Section -------------------------------------------- */}
+                    <div className="nav-link-item accountLoginSignup">
+                        <a href={`${(authStatus === 'authenticated' && user) ? "/account" : "/login"}`} 
+                            className="nav-link-item-acc nav-link-item-sub" >
+                            <AccountCircleOutlinedIcon/>
+                            {isLoading ? <Skeleton/> : 
+                                <div>{`${(authStatus === 'authenticated' && user) ? 
+                                    user.name : 
+                                    "Login/Signup"}`}
+                                </div>
+                            }
+                        </a>   
+                        {user && 
+                            <div className="userMenuContainer">
+                                {user.role === 'test_admin' && <a href='/admin/dashboard' className="userMenuContainerElement dashboardMenu">Dashboard</a>}
+                                <a href='/orders' className="userMenuContainerElement ordersMenu">Orders</a>
+                                <a href='/account' className="userMenuContainerElement profileMenu">Profile</a>
+                                <a href='/cart' className="userMenuContainerElement cardMenu">Cart</a>
+                                <a onClick={(e) => handleLogout(e)} className="userMenuContainerElement logoutMenu">Logout</a>
+                            </div>
+                        }
                     </div>
 
 
-                {/* ---------------------------------- All Products Page Link ------------------------------------- */}
-                <a href="/products" className="nav-link-item">
-                    <div className="nav-link-item-sub">Products</div>
-                </a>
-
-
-                {/* ---------------------------------- Accounts Section -------------------------------------------- */}
-                <div className="nav-link-item accountLoginSignup">
-                    <a href={`${(authStatus === 'authenticated' && user) ? "/account" : "/login"}`} 
-                        className="nav-link-item-acc nav-link-item-sub" >
-                        <AccountCircleOutlinedIcon/>
-                        {isLoading ? <Skeleton/> : 
-                            <div>{`${(authStatus === 'authenticated' && user) ? 
-                                user.name : 
-                                "Login/Signup"}`}
-                            </div>
-                        }
-                    </a>   
-                    {user && 
-                        <div className="userMenuContainer">
-                            {user.role === 'test_admin' && <a href='/admin/dashboard' className="userMenuContainerElement dashboardMenu">Dashboard</a>}
-                            <a href='/orders' className="userMenuContainerElement ordersMenu">Orders</a>
-                            <a href='/account' className="userMenuContainerElement profileMenu">Profile</a>
-                            <a href='/cart' className="userMenuContainerElement cardMenu">Cart</a>
-                            <a onClick={(e) => handleLogout(e)} className="userMenuContainerElement logoutMenu">Logout</a>
-                        </div>
-                    }
-                </div>
-
-
-                {/* ---------------------------------- Cart Section -------------------------------------------- */}
-                <div className="nav-link-item">
-                    <a href="/cart" className="nav-link-item-sub cartInfo">
-                        <div className="cartInfoSub">
-                            {
-                            cartItems && Object.keys(cartItems).length > 0 &&
-                                <div className="cartItems">{Object.keys(cartItems).length}</div>
-                            }
-                            <ShoppingCartOutlinedIcon/>
-                        </div>                        
-                        <div>Cart</div>
-                    </a>
-                </div>
+                    {/* ---------------------------------- Cart Section -------------------------------------------- */}
+                    <div className="nav-link-item">
+                        <a href="/cart" className="nav-link-item-sub cartInfo">
+                            <div className="cartInfoSub">
+                                {
+                                cartItems && Object.keys(cartItems).length > 0 &&
+                                    <div className="cartItems">{Object.keys(cartItems).length}</div>
+                                }
+                                <ShoppingCartOutlinedIcon/>
+                            </div>                        
+                            <div>Cart</div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </nav>
