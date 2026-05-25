@@ -412,9 +412,12 @@ a {
         justify-content: flex-start;
         background-color: rgba(13, 48, 66);
         height: 100vh;
-        align-content: flex-start;
-        overflow-y: auto;
+        height: 100dvh;
+        box-sizing: border-box;
+    }
 
+    .nav-links > div {
+        overflow-y: auto;
     }
 
     .exitTestAdminUser{

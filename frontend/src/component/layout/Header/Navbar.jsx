@@ -180,6 +180,8 @@ export const Navbar = () => {
             {/* ---------------------------------------------- Navigation Links -------------------------------------------------*/}
             <div className={`nav-links ${!navLinksopen ? 'nav-links-hidden' : ''}`}>     
 
+                <div>
+
 
                 <div onClick={handleOpenNavLinkBoxCLick} className='openCloseNavbutton'></div>
 
@@ -246,6 +248,7 @@ export const Navbar = () => {
                         </div>                        
                         <div>Cart</div>
                     </a>
+                </div>
                 </div>
             </div>
         </nav>
