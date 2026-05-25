@@ -155,3 +155,26 @@
     display: none;
   }
 }
+
+@media screen and (max-width: 500px) {
+
+  .cartGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .cartHeader {
+    display: none;
+  }
+
+  .cartItemsCart {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 2fr 1fr;
+    grid-auto-flow: column;
+    border-bottom: 1px solid grey;
+  }
+
+  .productQuantity {
+    padding-top: 0.2rem !important;
+  }
+}
