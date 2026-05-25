@@ -400,6 +400,7 @@ a {
 
     .openCloseNavbutton {
         display: flex;
+        flex-shrink: 0;
     }
 
     .nav-links {
@@ -412,6 +413,7 @@ a {
         background-color: rgba(13, 48, 66);
         height: 100vh;
         align-content: flex-start;
+        overflow-y: auto;
 
     }
 
