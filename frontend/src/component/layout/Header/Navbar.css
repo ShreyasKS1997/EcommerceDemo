@@ -16,10 +16,6 @@ a {
     align-items: center;
 }
 
-.nav-links {
-    transition: transform 0.2s ease-in-out;
-}
-
 .nav-links-main {
     display: flex;
     flex-direction: row;
@@ -420,6 +416,7 @@ a {
         overscroll-behavior: contain;
         justify-content: flex-start;
         align-items: flex-start;
+        transition: transform 0.2s ease-in-out, visibility 0.2s ease-in-out, opacity 0.2s ease-in-out;
     }
 
     .nav-links-background-dim {
@@ -467,7 +464,9 @@ a {
     }
 
     .nav-links-hidden {
-        transform: translateX(-100%)
+        transform: translateX(-100%);
+        opacity: 0;
+        visibility: 0;
     }
 
     .cartItems {
