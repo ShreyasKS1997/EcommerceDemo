@@ -28,7 +28,7 @@ const ProductDetails = () => {
   const [submitReviewButtonDisabled, setSubmitReviewButtonDisabled] = useState(false);
 
   const {data:product, isLoading, refetch} = useGetProductDetailsQuery(params.id);
-  const [addToCart] = useUpdateCartMutation();
+  const [addToCart, {isLoading: addToCartLoading}] = useUpdateCartMutation();
   const [submitReview, {isLoading: submitReviewLoading, isSuccess, reset}] = useSubmitReviewMutation();
 
   const [quantity, setQuantity] = useState(1);
@@ -163,7 +163,7 @@ const ProductDetails = () => {
                 disabled={product.stock < 1 ? true : false}
                 onClick={addToCartHandler}
               >
-                Add to Cart
+                {addToCartLoading ? 'Please wait...' : 'Add to Cart'}
               </button>
             </div>
 

@@ -4,6 +4,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vmin;
+  min-height: 400px;
   position: relative;
 }
 
@@ -16,11 +17,13 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.6);
   color: rgb(203, 233, 248);
+  font-size: clamp(0.7rem, 1vw, 1.7rem);
 }
 
 .bannerContainer > h1,
 .bannerContainer > h2 {
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  text-align: center;
 }
 
 .bannerContainer > a > button {
@@ -29,10 +32,10 @@
   background-color: white;
   border: 1px solid white;
   border-radius: 0;
-  padding: 1vmax;
+  padding: 0.8em 1.5em;
   transition: all 0.2s;
-  width: 9vmax;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  font-size: 1em;
 }
 
 .bannerContainer > a > button:hover {
@@ -42,8 +45,8 @@
 
 .banner::after {
   content: '';
-  width: 100vw;
-  height: 100vmin;
+  width: 100%;
+  height: 100%;
   background-color: white;
   position: absolute;
   top: 0;
@@ -68,4 +71,28 @@
   width: 80vw;
   flex-wrap: wrap;
   max-width: 100%;
+}
+
+@media screen and (max-width: 430px) {
+  .banner::after {
+    width: 0;
+    height: 0;
+  }
+
+  .bannerContainer {
+    padding: 30px;
+  }
+
+  .bannerContainer > h1, h2 {
+    margin: 20px 0;
+  }
+
+  .homeHeading {
+    margin-top: 20px;
+  }
+
+  .container {
+    margin-bottom: 20px;
+  }
+
 }

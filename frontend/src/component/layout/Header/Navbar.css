@@ -16,6 +16,13 @@ a {
     align-items: center;
 }
 
+.nav-links-main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
 .navBarCustom {
     width: 100%;
     box-sizing: border-box;
@@ -25,6 +32,7 @@ a {
     background-color: rgba(13, 48, 66, 0.9);
     color: rgb(199, 199, 199);
     user-select: none;
+    z-index: 2;
 }
 
 .companyLogoNav {
@@ -32,7 +40,7 @@ a {
     align-items: center;
     margin: 0 20px;
     font-family: 'Inter', Arial, Helvetica, sans-serif;
-    font-size: 25px;
+    font-size: 1.5rem;
     font-weight: 700;
 }
 
@@ -52,6 +60,7 @@ a {
     width: 100%;
     padding: 8px 12px;
     border-radius: 7px;
+    min-width: 7.7rem;
     border: 1px solid #ccc;
 }
 
@@ -73,16 +82,23 @@ a {
 .suggestionBox {
     position: absolute;
     height: 0;
+    opacity: 0;
     visibility: hidden;
     max-height: 70vh;
     width: 100%;
-    z-index: 1000;
+    z-index: 1;
     background-color: white;
     top: 115%;
     padding: 20px;
     color: black;
     border-radius: 4px 4px 10px 10px;
     box-shadow: 0 4px 12px 5px rgba(0, 0, 0, 0.1);
+}
+
+.suggestionBox.visible {
+    height: inherit;
+    visibility: visible;
+    opacity: 1;
 }
 
 .suggestionItem {
@@ -123,7 +139,7 @@ a {
     font-family: 'Inter', Arial, Helvetica, sans-serif;
 }
 
-.price {
+.navPrice {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -171,7 +187,7 @@ a {
     border-radius: 5px;
     height: 100%;
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
-    font-size: 14px;
+    font-size: 0.9rem;
 }
 
 .nav-link-item > svg {
@@ -227,6 +243,41 @@ a {
     opacity: 1;
     cursor: pointer;
 }
+
+.openCloseNavbutton {
+    z-index: 1;
+    display: none;
+    height: 21px;
+    width: 21px;
+    align-self: flex-start;
+    margin: 15px;
+    border: none;
+    background-image: 
+        linear-gradient(to right, white, white),
+        linear-gradient(to right, white, white),
+        linear-gradient(to right, white, white);
+    
+    /* Sets the height and width of each line (Width Height) */
+    background-size: 
+        100% 4px, 
+        100% 4px, 
+        100% 4px;
+        
+    /* Positions each line at the top (Horizontal Vertical) */
+    background-position: 
+        0px 0px, 
+        0px 7px, 
+        0px 14px;
+        
+    /* Stops the lines from repeating forever */
+    background-repeat: no-repeat; 
+    transition: transform 0.2s ease-in-out 0.1s;
+}
+
+.openCloseNavbutton:hover {
+    cursor: pointer;
+}
+
 
 .locationBoxLabel {
     margin-bottom: 5px;
@@ -353,4 +404,106 @@ a {
     justify-content: center;
     gap: 5px;
     line-height: 0;
+}
+
+@media screen and (max-width: 900px) { 
+
+    .openCloseNavbutton {
+        display: flex;
+        flex-shrink: 0;
+    }
+
+    .nav-links {
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        z-index: 1;
+        height: 100%;
+        background-color: rgba(13, 48, 66);
+        overscroll-behavior: contain;
+        justify-content: flex-start;
+        align-items: flex-start;
+        transition: transform 0.2s ease-in-out, visibility 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    }
+
+    .nav-links-background-dim {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.877);
+        z-index: 0;
+    }
+
+    .nav-links-main {
+        overflow-y: auto;
+        z-index: 1;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-direction: column;
+        overscroll-behavior: contain;
+        background-color: rgba(13, 48, 66);
+        height: 100%;
+    }
+
+    .exitTestAdminUser{
+        margin: 20px;
+    }
+
+    .nav-link-item {
+        height: auto;
+        width: 100%;
+    }
+
+    .nav-link-item-sub {
+        padding: 20px;
+    }
+
+    .nav-link-item > div {
+        width: 100%;
+    }
+
+    .nav-link-item-sub {
+        justify-content: flex-start;
+        width: 100%;
+    }
+
+    .nav-links-hidden {
+        transform: translateX(-100%);
+        opacity: 0;
+        visibility: 0;
+    }
+
+    .cartItems {
+        top: 8px;
+        left: 25px;
+    }
+
+    .changeLocationBox {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 750px) {
+
+    .navBarCustom {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .companyLogoNav {
+        position: relative;
+        transform: translateY(-100%);
+        justify-content: center;
+    }
+
+    .companyLogoNav {
+        display: flex;
+        align-items: center;
+        margin: 0 100px;
+    }
+
+
 }

@@ -3,7 +3,7 @@ import { api } from "./api"
 const productApi = api.injectEndpoints({
     endpoints: (builder) => ({
         getSearchProductResult: builder.query({
-            query: ({keyword='', currentPage=1, price=[0, 2000000], category, ratings=0}) => 
+            query: ({keyword='', currentPage=1, price=[0, 2000000], category='', ratings=0}) => 
                 `/products?keyword=${keyword}&page=${currentPage}&` +
                     `price[gte]=${price[0]}&price[lte]=${price[1]}&` +
                         `category=${category}&ratings[gte]=${ratings}`,

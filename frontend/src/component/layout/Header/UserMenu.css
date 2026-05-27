@@ -40,3 +40,10 @@
     cursor: pointer;
     background-color: rgb(53, 70, 165);
 }
+
+@media screen and (max-width: 900px) { 
+    
+    .userMenuContainer {
+        display: none;
+    }
+}

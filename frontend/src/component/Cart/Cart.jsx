@@ -17,8 +17,8 @@ const Cart = () => {
    
   const dispatch = useDispatch();
   // cart data is stored in redux state 'cart' as soon as it fetches inside onQuerystarted
-  const {data: {cartItems:serverCartItems} = {}, isLoading} = useGetCartItemsQuery(authStatus !== 'authenticated' && skipToken);
-  const {cartItems:localCartItems} = useSelector((state) => state.cart);
+  const {data: {cartItems:serverCartItems} = {}, isLoading, isFetching} = useGetCartItemsQuery(authStatus !== 'authenticated' && skipToken);
+  const {cartItems:localCartItems = {}} = useSelector((state) => state.cart);
   const [updateCartItems, {isLoading: updateCartLoading}] = useUpdateCartMutation();
   const [replaceItems, {isLoading: replaceItemsLoading}] = useReplaceQuantityMutation();
   const [removeCartItems, {isLoading: removeCartItemsLoading}] = useRemoveCartItemsMutation();
@@ -27,6 +27,8 @@ const Cart = () => {
     if (!serverCartItems) return false;
     return JSON.stringify(serverCartItems) !== JSON.stringify(localCartItems);
   }, [localCartItems, serverCartItems]);
+
+  const viewProductsHandler = () => navigate('/products');
 
   const updateCart = async(items) => {
     const cartItems = {};
@@ -73,78 +75,62 @@ const Cart = () => {
   }
 
   return (
+    (!localCartItems || Object.values(localCartItems).length <= 0) ? 
+    <div className='noProductsInCart'>
+      <RemoveShoppingCartIcon/>
+      <p>No Products in your cart</p>
+      <button onClick={viewProductsHandler}>View Products</button>
+    </div> :
     <>
-      {!localCartItems || (localCartItems && Object.keys(localCartItems).length === 0) ? (
-        <div className="emptyCart">
-          <RemoveShoppingCartIcon sx={{width: '70px', height: '70px'}}/>
+    <div className='cartGrid'>
 
-          <Typography>No Product in Your Cart</Typography>
-          <Link to="/products">View Products</Link>
-        </div>
-      ) : (
-        <>
-          <div className="cartPage">
-            <div className="cartHeader">
-              <p>Product</p>
-              <p>Price</p>
-              <p>Quantity</p>
-              <p>Subtotal</p>
+      <div className='cartHeader'>Product</div>
+      <div className='cartHeader textCenter smallerScreenHide'>Price</div>
+      <div className='cartHeader textCenter'>Quantity</div>
+      <div className='cartHeader textRight'>Subtotal</div>
+
+      {Object.entries(localCartItems).map(([id, value]) => {
+        return (
+          <div className='cartItemsCart'>
+            <div className='productName'>
+              <CartItemCard item={value} deleteCartItems={deleteCartItems}/>
             </div>
 
-            <div className='cartContainerWrap'>
-              {
-              localCartItems &&
-              Object.entries(localCartItems).map(([id, data]) => {
-                const quantity = data.quantity;
-                return (
-                <div className="cartContainer" key={id}>
-                  <CartItemCard item={{id:id, data: data}} deleteCartItems={deleteCartItems} />
-                  <p className='cartCenterStyle'>{`₹ ${data.price}`}</p>
-                  <div className=" cartInput">
-                    <button onClick={() => decreaseQuantity(id, quantity)}>
-                      -
-                    </button>
-                    <input type="number" value={quantity} min={1} max={data.stock} readOnly />
-                    <button
-                      onClick={() =>
-                        increaseQuantity(
-                          id,
-                          quantity,
-                          data.stock
-                        )
-                      }
-                    >
-                      +
-                    </button>
-                  </div>
-                  <p className="cartSubtotal">{`₹ ${
-                    data.price * quantity
-                  }`}</p>
-                
-                </div>
-                )
-              })
-            }
-            {needsUpdate && <div className='updateCartbutton'><button onClick={() => updateCart(localCartItems)}>{`${replaceItemsLoading ? 'Please wait...' : 'Update Cart'}`}</button></div>}
+            <div className='productPrice textCenter smallerScreenHide'>
+              <p>₹ {value.price}</p>
             </div>
 
-            <div className="cartGrossProfit">
-              <div className="cartGrossProfitBox">
-                <p>Gross Total</p>
-                {needsUpdate ? <h3>---</h3> : <p>{`₹ ${Object.entries(localCartItems).reduce(
-                  (acc, [curId, curData]) => acc + (curData.quantity * curData.price),
-                  0
-                )}`}</p>}
-              </div>
+            <div className='productQuantity textCenter'>
+              {console.log(value)}
+              <button onClick={() => decreaseQuantity(id, value.quantity)}>-</button>
+              <input min={1} max={1} type='number' value={value.quantity}/>
+              <button onClick={() => increaseQuantity(id, value.quantity, value.stock)}>+</button>
             </div>
-              <div className="checkOutBtn">
-                <button onClick={checkoutHandler}>Check Out</button>
-              </div>
+
+            <div className='productSubTotal textRight'>
+              <p>₹ {value.price * value.quantity}</p>
+            </div>
           </div>
-        </>
-      )}
-    </>
-  );
-};
+        )
+      })}
+    </div>
+
+      <div className='cartBlock2'>
+        <div>
+          <span>Gross Total</span>
+          {needsUpdate && <button onClick={() => updateCart(localCartItems)}>{replaceItemsLoading || isFetching ? 'Please wait...' : 'Update'}</button>}
+          <span>{needsUpdate ? '---' : `
+            ₹ ${Object.values(localCartItems).reduce((sum, value) => {
+              return sum + (value.price * value.quantity);
+            }, 0)}`}
+          </span>
+        </div>
+        <button onClick={checkoutHandler}>
+          Check Out
+        </button>
+      </div>
+      </>
+  )
+}
 
 export default Cart;

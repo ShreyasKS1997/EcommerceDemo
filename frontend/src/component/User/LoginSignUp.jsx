@@ -218,7 +218,7 @@ const LoginSignUp = () => {
                 </div>
 
                 <div id="registerImage">
-                  <img src={!avatarPreview && '/Profile.png'} alt="Avatar Preview" />
+                  <img src={!avatarPreview ? '/Profile.png' : avatarPreview} alt="Avatar Preview" />
                   <input
                     type="file"
                     name="avatar"

@@ -86,13 +86,14 @@ const MyOrders = () => {
               rows={rows}
               columns={columns}
               sx={{
+                flex: 0,
                 '.greenColor > div': { color: 'green' },
                 '.redColor > div': { color: 'red' },
               }}
               pageSize={10}
               disableRowSelectionOnClick
               className="myOrdersTable"
-              autoHeight
+              autoHeight={true}
             />
           </ThemeProvider>
         </div>
