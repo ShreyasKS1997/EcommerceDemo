@@ -4,6 +4,7 @@ footer {
   color: white;
   background-color: rgb(34, 33, 33);
   padding: 2vmax;
+  vertical-align: bottom;
 }
 
 .leftFooter {
@@ -71,10 +72,22 @@ footer {
   gap: 1vmax;
   margin-top: 5px;
   margin-bottom: 10px;
+  flex-wrap: wrap;
 }
 
 .socialIcons > img {
   width: 20px;
   height: 15px;
   cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+  footer {
+    flex-direction: column;
+  }
+
+  footer > div {
+    margin: 1rem;
+  }
+
 }
