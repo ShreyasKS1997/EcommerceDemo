@@ -82,6 +82,7 @@ a {
 .suggestionBox {
     position: absolute;
     height: 0;
+    opacity: 0;
     visibility: hidden;
     max-height: 70vh;
     width: 100%;
@@ -92,6 +93,12 @@ a {
     color: black;
     border-radius: 4px 4px 10px 10px;
     box-shadow: 0 4px 12px 5px rgba(0, 0, 0, 0.1);
+}
+
+.suggestionBox.visible {
+    height: inherit;
+    visibility: visible;
+    opacity: 1;
 }
 
 .suggestionItem {
@@ -132,7 +139,7 @@ a {
     font-family: 'Inter', Arial, Helvetica, sans-serif;
 }
 
-.price {
+.navPrice {
     display: flex;
     align-items: center;
     justify-content: center;
