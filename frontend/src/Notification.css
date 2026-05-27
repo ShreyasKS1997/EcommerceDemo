@@ -4,9 +4,11 @@
     justify-content: center;
     flex-direction: column;
     overflow-x: hidden;
-    position: absolute;
+    position: fixed;
+    top: 0;
     right: 0;
     font-family: 'Inter', Arial, Helvetica, sans-serif;
+    z-index: 1;
 }
 .notificationBody {
     padding: 10px 0;
@@ -36,7 +38,7 @@
 }
 .notificationBodySuccess{
     background-image: linear-gradient(to bottom,
-        rgba(0, 223, 0, 0.4) 0%, rgba(0,215,0) 20%, rgba(0, 215, 0) 80%, rgba(0, 223, 0, 0.4) 100%
+        rgba(31, 224, 31, 0.5) 0%, rgba(0,215,0.7) 20%, rgba(0, 215, 0.5) 80%, rgba(31, 224, 31, 0.7) 100%
     );
 }
 .notificationBodyInfo {
