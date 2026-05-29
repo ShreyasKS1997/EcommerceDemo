@@ -1,5 +1,5 @@
 .productCard {
-  width: 20%;
+  width: 10rem;
   display: flex;
   flex-direction: column;
   text-decoration: none;
@@ -12,6 +12,7 @@
   justify-content: stretch;
   border: 1px solid rgba(75, 74, 74, 0.1);
   min-width: 130px;
+  justify-self: center;
 }
 
 .productCard > img {

@@ -15,21 +15,30 @@
 
 .productsPaginationWrap {
   width: 100%;
+  box-sizing: border-box;
+  padding: 3rem 1.5rem;
 }
 
 .products {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  min-height: 30vh;
-  margin-left: 40px;
 }
 
 .productsList {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   box-sizing: border-box;
+  justify-content: start;
+  align-items: start;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  gap: 1rem;
+}
+
+.noProductsFound {
+  grid-column: 1/ -1;
+  text-align: center;
+  font-family: 'Robodo', Arial, Helvetica, sans-serif;
+  font-size: large;
 }
 
 .paginationBox {
@@ -90,6 +99,10 @@
   border-radius: 5px;
 }
 
+.M-Filter-Button {
+  display: none;
+}
+
 .price {
   display: flex;
   flex-direction: column;
@@ -119,4 +132,77 @@
 .ratings {
   border: 1px solid rgba(0, 0, 0, 0.329);
   margin: 10px;
+}
+
+@media screen and (max-width: 750px) {
+
+  .M-Filter-Button {
+    display: inline-block;
+  }
+
+  .M-Filter-Button > button {
+    border: 1px solid grey;
+    background: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 10px;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  .filterButton {
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    height: 5px;
+    width: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .filterButton.visible {
+    transform: rotate(225deg) translateY(0);
+  }
+
+  .filterButton.hidden {
+    transform: rotate(45deg) translateY(-20%) translateX(-20%);
+  }
+
+  .filterBox.visible {
+    display: flex;
+  }
+
+  .filterBox.hidden {
+    display: none;
+  }
+
+  .productsContainer {
+    flex-direction: column;
+  }
+
+  .price {
+    padding: 0;
+  }
+
+  .category {
+    padding: 0.7rem;
+  }
+
+  .categoryBox {
+    padding: 10px;
+  }
+
+  .category-link {
+    margin: 0.8rem;
+    display: inline-block;
+    border: 1px solid grey;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+  }
+
+  .productsList {
+    margin-top: 2rem;
+  }
 }
