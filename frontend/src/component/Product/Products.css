@@ -171,13 +171,10 @@
   }
 
   .filterBox.visible {
-    visibility: visible;
-    opacity: 1;
+    display: flex;
   }
 
   .filterBox.hidden {
-    visibility: hidden;
-    opacity: 0;
     display: none;
   }
 
