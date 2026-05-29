@@ -122,18 +122,16 @@ export const Navbar = () => {
         // For small screen layout when all other layout should be blocked when nav-links are visible/opened
         if (navLinksopen) {
             document.body.style.overflow = 'hidden';
-            document.getElementById('root').style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
         }
 
-        return () => {
-            document.body.style.overflow = 'unset';
-            document.getElementById('root').style.overflow = 'unset';
-        };
+        return () => document.body.style.overflow = '';
     }, [navLinksopen]);
 
     return (
         <nav className="navBarCustom">
-            <div onClick={handleOpenNavLinkBoxCLick} className='openCloseNavbutton'></div>
+            <div onClick={handleOpenNavLinkBoxCLick} className='openNavButton'></div>
             {/* ---------------------------------------------- Company Logo -------------------------------------------------*/}
             <a href="/" className="companyLogoNav">ECOMMERCE</a>
 
@@ -157,18 +155,11 @@ export const Navbar = () => {
 
             {/* ---------------------------------------------- Navigation Links -------------------------------------------------*/}
             <div className={`nav-links ${!navLinksopen ? 'nav-links-hidden' : ''}`}> 
-
                 <div className="nav-links-background-dim"></div>
-
                 <div className="nav-links-main">
-
-
-                    <div onClick={handleOpenNavLinkBoxCLick} className='openCloseNavbutton'></div>
-
+                    <div onClick={handleOpenNavLinkBoxCLick} className='closeNavButton'></div>
                     {user && user.role !== 'user' && <button className="exitTestAdminUser" onClick={(e) => exitTestAdminOrUserMode(e)}>{user.role === "test_admin" ? 'Exit test admin' : 'Exit test user'}</button>}
-
                     {/* ------------------------------- Location Section -------------------------------------- */}
-                        
                         <div className="nav-link-item LocationInfo">
                             {/* TODO: Create Selection of Location feature */}
                             <div className="nav-link-item-sub locationInfoSub">
@@ -184,24 +175,21 @@ export const Navbar = () => {
                                 <input type="button" value="Change" className="locationBoxSubmit"/>
                             </div>
                         </div>
-
-
                     {/* ---------------------------------- All Products Page Link ------------------------------------- */}
                     <a href="/products" className="nav-link-item">
                         <div className="nav-link-item-sub">Products</div>
                     </a>
-
-
                     {/* ---------------------------------- Accounts Section -------------------------------------------- */}
                     <div className="nav-link-item accountLoginSignup">
                         <a href={`${(authStatus === 'authenticated' && user) ? "/account" : "/login"}`} 
                             className="nav-link-item-acc nav-link-item-sub" >
                             <AccountCircleOutlinedIcon/>
-                            {isLoading ? <Skeleton/> : 
-                                <div>{`${(authStatus === 'authenticated' && user) ? 
-                                    user.name : 
-                                    "Login/Signup"}`}
-                                </div>
+                            {
+                                isLoading ? <Skeleton/> : 
+                                    <div>{`${(authStatus === 'authenticated' && user) ? 
+                                        user.name : 
+                                        "Login/Signup"}`}
+                                    </div>
                             }
                         </a>   
                         {user && 
@@ -214,8 +202,6 @@ export const Navbar = () => {
                             </div>
                         }
                     </div>
-
-
                     {/* ---------------------------------- Cart Section -------------------------------------------- */}
                     <div className="nav-link-item">
                         <a href="/cart" className="nav-link-item-sub cartInfo">

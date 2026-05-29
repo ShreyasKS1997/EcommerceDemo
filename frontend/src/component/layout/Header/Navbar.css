@@ -3,6 +3,10 @@ a {
     color: inherit;
 }
 
+.screenLock {
+    overflow: hidden;
+}
+
 .navBarCustom, .navBarSearchboxWrap{
     position: relative;
 }
@@ -244,12 +248,13 @@ a {
     cursor: pointer;
 }
 
-.openCloseNavbutton {
+.openNavButton {
     z-index: 1;
     display: none;
+    align-self: center;
+    justify-content: center;
     height: 21px;
     width: 21px;
-    align-self: flex-start;
     margin: 15px;
     border: none;
     background-image: 
@@ -274,8 +279,19 @@ a {
     transition: transform 0.2s ease-in-out 0.1s;
 }
 
-.openCloseNavbutton:hover {
+.closeNavButton {
+    display: none;
+    height: 15px;
+    width: 15px;
+    background: linear-gradient(45deg, transparent 45%, white 45%, white 55%, transparent 55%),
+                linear-gradient(-45deg, transparent 45%, white 45%, white 55%, transparent 55%);
+    align-self: flex-end;
+    margin: 0.8rem
+}
+
+.openNavButton:hover,.closeNavButton:hover {
     cursor: pointer;
+    opacity: 0.7;
 }
 
 
@@ -406,9 +422,35 @@ a {
     line-height: 0;
 }
 
+@media screen and (max-width: 1200px) {
+    .navBarCustom {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+    .companyLogoNav {
+        order: 1;
+    }
+
+    .navBarSearchboxWrap {
+        order: 3;
+        flex-basis: 100%;
+    }
+
+    .nav-links {
+        order: 2;
+    }
+
+}
+
 @media screen and (max-width: 900px) { 
 
-    .openCloseNavbutton {
+    .navBarCustom {
+        flex-wrap: nowrap;
+    }
+
+    .openNavButton,.closeNavButton {
         display: flex;
         flex-shrink: 0;
     }
@@ -416,7 +458,6 @@ a {
     .nav-links {
         position: fixed;
         display: flex;
-        flex-direction: column;
         z-index: 1;
         height: 100%;
         background-color: rgba(13, 48, 66);
@@ -488,22 +529,28 @@ a {
 
 @media screen and (max-width: 750px) {
 
+    .openNavButton {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
     .navBarCustom {
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto;
     }
 
     .companyLogoNav {
-        position: relative;
-        transform: translateY(-100%);
+        grid-row: 1;
+        grid-column: 1 / -1;
         justify-content: center;
+        margin: auto;
     }
 
-    .companyLogoNav {
-        display: flex;
-        align-items: center;
-        margin: 0 100px;
+    .navBarSearchboxWrap {
+        grid-row: 2;
+        grid-column: 1 / -1;
+        margin: 13px 10px;
     }
-
 
 }
