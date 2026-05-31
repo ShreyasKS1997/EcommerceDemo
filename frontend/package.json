@@ -16,6 +16,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@vitejs/plugin-react": "^6.0.1",
     "async-mutex": "^0.5.0",
     "axios": "^1.5.1",
     "chart.js": "^4.4.0",
@@ -38,10 +39,9 @@
     "redux-persist": "^6.0.0",
     "redux-state-sync": "^3.1.4",
     "redux-thunk": "^2.4.2",
+    "vite": "^8.0.5",
     "web-vitals": "^2.1.4",
-    "webfontloader": "^1.6.28",
-    "@vitejs/plugin-react": "^6.0.1",
-    "vite": "^8.0.5"
+    "webfontloader": "^1.6.28"
   },
   "scripts": {
     "start": "vite",
@@ -67,6 +67,7 @@
     ]
   },
   "devDependencies": {
+    "@vitejs/plugin-basic-ssl": "^2.3.0",
     "@vitejs/plugin-react": "^6.0.1",
     "vite": "^8.0.5"
   }

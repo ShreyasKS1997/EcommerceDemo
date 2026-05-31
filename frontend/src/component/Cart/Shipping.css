@@ -1,6 +1,4 @@
 .shippingContainer {
-  width: 100vw;
-  max-width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,7 +12,7 @@
   overflow: hidden;
   box-shadow: 0 0 5px 1px grey;
   padding: 0 30px;
-  margin: 50px;
+  margin: 25px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,7 +23,6 @@
   text-align: center;
   color: rgba(0, 0, 0, 0.664);
   padding: 30px 0 20px;
-  width: 50%;
   font-family: 'Inter', Arial, Helvetica, sans-serif;
   white-space: nowrap;
 }
@@ -36,19 +33,19 @@
   align-items: center;
   justify-content: space-evenly;
   transition: all 0.2s;
+  gap: 10px;
 }
 
 .shippingForm > div {
   display: flex;
-  width: 100%;
   align-items: center;
-  margin: 5px;
+  width: 100%;
 }
 
 .shippingForm > div > input,
 .shippingForm > div > select {
-  padding: 1vmax 4vmax;
-  padding-right: 1vmax;
+  padding: 15px 3em;
+  padding-right: 1em;
   width: 100%;
   box-sizing: border-box;
   border: 1px solid rgba(0, 0, 0, 0.267);
@@ -58,7 +55,7 @@
 
 .shippingForm > div > svg {
   position: absolute;
-  transform: translateX(1vmax);
+  transform: translateX(0.5rem);
   color: rgba(0, 0, 0, 0.623);
 }
 
@@ -67,11 +64,12 @@
   background-color: var(--primary-color);
   color: white;
   width: 100%;
-  padding: 1vmax;
+  padding: 1em;
   cursor: pointer;
   transition: all 0.2s;
   outline: none;
-  margin: 2vmax;
+  margin-top: 1em;
+  margin-bottom: 2em;
 }
 
 .shippingBtn:hover {
