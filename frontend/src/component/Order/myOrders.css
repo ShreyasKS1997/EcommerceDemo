@@ -1,13 +1,17 @@
 .myOrdersPage {
-  width: 100%;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
   padding: 5rem;
+  background-color: rgb(240, 240, 240);
 }
 
 .myOrdersPage > p {
-  font-size: 20px;
+  font-size: 30px;
+  font-weight: 500;
 }
 
 #myOrdersHeading {
@@ -15,4 +19,10 @@
   margin-bottom: 20px;
   box-sizing: border-box;
   color: rgb(71, 71, 71);
+}
+
+@media screen and (max-width: 800px) {
+  .myOrdersPage {
+    padding: 10px;
+  }
 }

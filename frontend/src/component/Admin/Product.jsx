@@ -245,6 +245,7 @@ const UpdateProduct = () => {
               {(isLoading || createProductLoading) ? 'Please wait...' : `${productId ? 'Update' : 'Create'}`}
             </Button>
           </form>
+          <div className={`imageEditBoxDim ${editImageBoxStateVisible ? 'visible' : 'hidden'}`}></div>
           <div className={`imageEditBoxWrap ${editImageBoxStateVisible ? 'imageEditBoxVisible' : 'imageEditBoxHidden'}`}>
             <div className='imageEditBox'>
               <h3>Edit images</h3>

@@ -20,16 +20,20 @@ function Footer() {
       </div>
 
       <div className="rightFooter">
-        <h5>Follow us</h5>
-        <div className="socialIcons">
-          <img src='/youtube.png' alt="Youtube" />
-          <img src='/facebook-logo.png' alt="Facebook" />
-          <img src='/instagram-icon.png' alt="Instagram" />
-          <img src='/x-icon.png' alt="Twitter" />
-          <img src="/linkedIn-logo.png" alt="LinkedIn"/>
+        <div>
+          <Link to='/about'><h5>About</h5></Link>
+          <Link to='/contact'><h5>Contact Us</h5></Link>
         </div>
-        <Link to='/about'><h5>About</h5></Link>
-        <Link to='/contact'><h5>Contact Us</h5></Link>
+        <div>
+          <h5>Follow us</h5>
+          <div className="socialIcons">
+            <img src='/youtube.png' alt="Youtube" />
+            <img src='/facebook-logo.png' alt="Facebook" />
+            <img src='/instagram-icon.png' alt="Instagram" />
+            <img src='/x-icon.png' alt="Twitter" />
+            <img src="/linkedIn-logo.png" alt="LinkedIn"/>
+          </div>
+        </div>
       </div>
     </footer>
   );

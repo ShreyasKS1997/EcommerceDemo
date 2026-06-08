@@ -101,13 +101,18 @@ const UpdateProfile = () => {
             </div>
 
             <div id="updateProfileImage">
-              <img src={avatarPreview} alt="Avatar Preview" />
-              <input
-                type="file"
-                name="avatar"
-                accept="image/*"
-                onChange={updateProfileDataChange}
-              />
+              <div>
+                <img src={avatarPreview} alt="Avatar Preview" />
+              </div>
+              <label className="custom-file-upload">
+                <input 
+                  type="file" 
+                  name='avatar'
+                  accept='image/'
+                  onChange={updateProfileDataChange}
+                />
+                Choose File
+              </label>
             </div>
             <input
               type="submit"

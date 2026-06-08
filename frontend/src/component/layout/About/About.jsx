@@ -15,7 +15,7 @@ const About = () => {
             <h4>This is a Demo E-Commerce wesbite created using M.E.R.N Stack with Redux and RTK query</h4>
         </div>
         <div className="socialMediaIconLinks">
-            <h1>Visit our Social Channels</h1>
+            <h2>Visit our Social Channels</h2>
             <div className='socialMediaIcons'>
                 <a href="/#" target="blank">
                   <YouTube style={{color: 'red'}} className="youtubeSvgIcon" />

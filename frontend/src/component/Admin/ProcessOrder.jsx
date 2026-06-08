@@ -10,7 +10,7 @@ import './processOrder.css';
 import { useGetOrderDetailsQuery, useUpdateOrderAdminMutation } from '../../Services/orderApi';
 import { api } from '../../Services/api';
 
-const ProcessOrder = (match) => {
+const ProcessOrder = () => {
 
   const dispatch = useDispatch();
   
@@ -55,9 +55,6 @@ const ProcessOrder = (match) => {
         <div className="newProductContainer">
             <div
               className="confirmOrderPage"
-              style={{
-                display: order.orderStatus === 'Delivered' ? 'block' : 'grid',
-              }}
             >
               <div>
                 <div className="confirmshippingArea">
@@ -128,16 +125,20 @@ const ProcessOrder = (match) => {
                     {order.orderItems &&
                       order.orderItems.map((item) => (
                         <div key={item.product}>
-                          <img src={item.images[0].url} alt="Product" />
+                          <div>
+                            <img src={item.images[0].url} alt="Product" />
+                          </div>
                           <Link to={`/product/${item.product}`}>
                             {item.name}
                           </Link>{' '}
                           <span>
-                            {item.quantity} x ₹{item.price} =
-                            <b>₹{item.price * item.quantity}</b>
+                            {item.quantity} x ₹{item.price}
                           </span>
+                          <p>=</p>
+                          <b>₹{item.price * item.quantity}</b>
                         </div>
                       ))}
+                      
                   </div>
                 </div>
               </div>

@@ -1,0 +1,174 @@
+.dataObjectArray {
+    display: grid;
+    border: 1px solid rgb(209, 209, 209);
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 0 5px 1px rgb(192, 192, 192);
+    font-family: 'Robodo', Arial, Helvetica, sans-serif;
+}
+
+.largeScreenHeading {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 30px 10px 30px 25px !important;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+}
+
+.DataListItem > span:first-child {
+    text-align: start;
+}
+
+.DataListItem {
+    display: grid;
+    grid-template-columns: subgrid;
+    text-align: center;
+    padding: 10px;
+    border-bottom: 1px solid rgb(209, 209, 209);
+    align-items: center;
+    gap: 10px;
+    text-align: start;
+}
+
+.DataListItem > span > span:last-child {
+    overflow-wrap: anywhere;
+}
+
+.green {
+    background-color: rgb(180, 255, 180);
+    color: rgb(25, 104, 25);
+    border: 1px solid rgba(25, 104, 25, 0.2);;
+}
+
+.orange {
+    background-color: rgb(255, 228, 179);
+    color: rgb(153, 104, 14);
+    border: 1px solid rgba(153, 104, 14, 0.2);
+}
+
+.blue {
+    background-color: rgb(179, 179, 255);
+    color: rgb(26, 26, 129);
+    border: 1px solid rgba(26, 26, 129, 0.2);
+}
+
+.status {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 0;
+    border-radius: 10px;
+}
+
+.viewDetailsButton > button {
+    background-color: var(--primary-color);
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+}
+
+.viewDetailsButton > button:hover {
+    background-color: var(--secondary-hover);
+}
+
+.smallScreenHeading {
+    display: none;
+}
+
+.ActionButtons > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.ActionButtons > div > button {
+    cursor: pointer;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.ActionButtons > div > button:hover {
+    background-color: var(--secondary-hover);
+}
+
+.customColumnButton {
+    background-color: var(--primary-color);
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: white;
+}
+
+.customColumnButton:hover {
+    background-color: var(--secondary-hover);
+}
+
+@media screen and (max-width: 800px) {
+
+    .largeScreenHeading {
+        display: none;
+    }
+
+    .smallScreenHeading {
+        display: flex;
+    }
+
+    .dataObjectArray {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 5px;
+        gap: 10px;
+        background: none;
+        box-shadow: none;
+        border: none;
+        width: 100%;
+    }
+
+    .DataListItem {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 0 5px 1px rgb(192, 192, 192);
+    }
+
+    .DataListItem > span {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 30px;
+        margin: 10px 0px;
+    }
+
+    .DataListItem > span:first-child > span:first-child {
+        white-space: nowrap;
+    }
+
+    .DataListItem > span:first-child > span:last-child {
+        font-size: clamp(0.9em, 2vw, 1em);
+        overflow-wrap: anywhere;
+    }
+
+    .status {
+        padding: 8px 15px;
+    }
+
+    .ActionButtons {
+        display: flex;
+        align-items: center;
+        margin: 10px 0;
+        justify-content: space-between;
+    }
+
+    .ActionButtons > div {
+        display: flex;
+        gap: 10px;
+    }
+}

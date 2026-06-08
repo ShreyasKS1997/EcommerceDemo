@@ -14,6 +14,7 @@ import { useLoadUserQuery } from '../../Services/userApi';
 import { ThemeProvider } from '@mui/system';
 import { MuiTheme } from '../../MuiTheme';
 import { addNotification } from '../../SliceThunks/utils';
+import { DataList } from '../../DataList';
 
 const ProductList = () => {
 
@@ -23,18 +24,18 @@ const ProductList = () => {
   const [page, setPage] = useState({page:1});
   const [deleteProductSuccess, setDeleteProductSuccess] = useState(false);
 
-  const {data, isLoading: isGetAllOrdersLoading} = useGetAllProductsQuery(page);
+  const {data, isLoading: isGetAllProductsLoading} = useGetAllProductsQuery(page);
   const [deleteProduct, {isLoading:isDeletingProduct, error}] = useDeleteProductMutation();
   const {data:userData} = useLoadUserQuery();
 
   const products = data?.products || [];
   const filteredProductsCount = data?.filteredProductsCount || 0;
 
-  const deleteProductHandler = useCallback(async(e, id) => {
+  const deleteProductHandler = useCallback(async(e, productDetails) => {
     e.stopPropagation();
     try {
       setDeleteProductSuccess(true);
-      await deleteProduct(id).unwrap();
+      await deleteProduct(productDetails['Product Id']).unwrap();
       setDeleteProductSuccess(false);
     } catch (error) {
       console.log(error);
@@ -42,78 +43,39 @@ const ProductList = () => {
     }
   });
 
-  const editProductHandler = useCallback((e, id) => {
+  const editProductHandler = useCallback((e, productDetails) => {
     e.stopPropagation();
-    navigate(`/admin/product/${id}`);
+    navigate(`/admin/product/${productDetails['Product Id']}`);
   });
-
-  const columns = useMemo(() => [
-    { field: 'id', 
-      headerName: 'Product ID',
-      flex: 0.3
-    },
-
-    {
-      field: 'name',
-      headerName: 'Name',
-      flex: 0.3,
-    },
-    {
-      field: 'stock',
-      headerName: 'Stock',
-      type: 'number',
-      flex: 0.1,
-    },
-
-    {
-      field: 'price',
-      headerName: 'Price',
-      type: 'number',
-      flex: 0.1,
-    },
-
-    {
-      field: 'actions',
-      headerName: 'Actions',
-      type: 'actions',
-      flex: 0.2,
-      sortable: false,
-      renderCell: (params) => {
-        return (
-          <>
-            <Button onClick={(e) => editProductHandler(e, params.id)}>
-              <EditIcon />
-            </Button>
-
-            <Button disabled = {deleteProductSuccess || userData.sandboxId !== params.row.sandboxId} onClick={(e) => deleteProductHandler(e, params.id)}>
-              <DeleteIcon />
-            </Button>
-          </>
-        );
-      },
-    },
-  ], [navigate, editProductHandler, deleteProductHandler, deleteProductSuccess, userData]
-);
-
 
   const rows = useMemo(() => {
     return products.map((item) => ({
-      id: item._id,
-      stock: item.stock,
-      price: item.price,
-      name: item.name,
+      'Product Id': item._id,
+      Stock: item.stock,
+      Price: item.price,
+      Name: item.name,
       sandboxId: item.sandboxId,
     }));
   }, [products]);
-    
 
-    if (isGetAllOrdersLoading) {
-      return <Loader/>
-    }
+  const columnData = {
+    heading: ['Product Id', 'Stock', 'Price', 'Name', 'Actions'],
+    data: rows,
+    columnLength: 5,
+    gridCellTemplateColumn: '2fr 1.5fr 1fr 1.5fr 1fr',
+    viewDetailsButton: false,
+    ActionButtons: [<EditIcon/>, <DeleteIcon/>],
+    ActionButtonsHandler: [editProductHandler, deleteProductHandler],
+    excludeData: ['sandboxId'],
+  }
 
-    if (error) {
-      dispatch(addNotification({message: error, errorType: 'error'}));
-    }
+  if (isGetAllProductsLoading || isDeletingProduct) {
+    return <Loader/>
+  }
+
+  if (error) {
+    dispatch(addNotification({message: error, errorType: 'error'}));
+  }
 
 
   return (
@@ -127,25 +89,8 @@ const ProductList = () => {
 
           <h3>Note: You can only delete or edit the product that you have created.</h3>
 
-          <ThemeProvider theme={MuiTheme}>
-            <DataGrid
-              rows={rows}
-              columns={columns}
-              paginationMode='server'
-              rowCount={filteredProductsCount}
-              initialState={{
-                pagination: {
-                  paginationModel: {
-                    pageSize: 10
-                  },
-                },
-              }}
-              onPaginationModelChange={(model, details) => setPage({page: model.page + 1})}
-              disableSelectionOnClick
-              autoHeight
-              loading={isGetAllOrdersLoading || isDeletingProduct}
-            />
-          </ThemeProvider>
+          <DataList data={columnData} />
+           
         </div>
       </div>
     </>

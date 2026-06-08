@@ -1,7 +1,9 @@
 .updateOrderForm {
-  margin: 5vmax 0;
-  padding: 3vmax;
+  margin: 3rem;
+  padding: 3rem;
   background-color: white;
+  box-shadow: 0 0 10px -2px grey;
+  border-radius: 10px;
 }
 
 .updateOrderForm > h1 {
