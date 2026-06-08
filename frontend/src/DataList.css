@@ -23,12 +23,11 @@
 .DataListItem {
     display: grid;
     grid-template-columns: subgrid;
-    text-align: center;
     padding: 10px;
     border-bottom: 1px solid rgb(209, 209, 209);
     align-items: center;
     gap: 10px;
-    text-align: start;
+    text-align: center;
 }
 
 .DataListItem > span > span:last-child {
