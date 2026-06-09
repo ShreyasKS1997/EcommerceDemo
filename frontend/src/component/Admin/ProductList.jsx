@@ -15,31 +15,35 @@ import { ThemeProvider } from '@mui/system';
 import { MuiTheme } from '../../MuiTheme';
 import { addNotification } from '../../SliceThunks/utils';
 import { DataList } from '../../DataList';
+import Pagination from 'react-js-pagination';
 
 const ProductList = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [page, setPage] = useState({page:1});
-  const [deleteProductSuccess, setDeleteProductSuccess] = useState(false);
+  const [currentPage, setCurrentPage] = useState({page:1});
 
-  const {data, isLoading: isGetAllProductsLoading} = useGetAllProductsQuery(page);
+  const {data, isLoading: isGetAllProductsLoading, isFetching} = useGetAllProductsQuery(currentPage);
   const [deleteProduct, {isLoading:isDeletingProduct, error}] = useDeleteProductMutation();
-  const {data:userData} = useLoadUserQuery();
+  const {data:activeUserDetails} = useLoadUserQuery();
 
-  const products = data?.products || [];
-  const filteredProductsCount = data?.filteredProductsCount || 0;
+  const products = data?.products ?? [];
+  const productCount = data?.productCount ?? 0;
+  const resultPerPage = data?.resultPerPage ?? 0;
+  const filteredProductsCount = data?.filteredProductsCount ?? 0;
+  const sandboxId = activeUserDetails?.sandboxId ?? '';
+
+  const setCurrentPageNo = (e) => {
+    setCurrentPage({page: e});
+  };
 
   const deleteProductHandler = useCallback(async(e, productDetails) => {
     e.stopPropagation();
     try {
-      setDeleteProductSuccess(true);
       await deleteProduct(productDetails['Product Id']).unwrap();
-      setDeleteProductSuccess(false);
     } catch (error) {
       console.log(error);
-      setDeleteProductSuccess(false);
     }
   });
 
@@ -66,10 +70,11 @@ const ProductList = () => {
     viewDetailsButton: false,
     ActionButtons: [<EditIcon/>, <DeleteIcon/>],
     ActionButtonsHandler: [editProductHandler, deleteProductHandler],
+    activeUserSandboxId: sandboxId,
     excludeData: ['sandboxId'],
   }
 
-  if (isGetAllProductsLoading || isDeletingProduct) {
+  if (isGetAllProductsLoading || isDeletingProduct || isFetching) {
     return <Loader/>
   }
 
@@ -90,6 +95,27 @@ const ProductList = () => {
           <h3>Note: You can only delete or edit the product that you have created.</h3>
 
           <DataList data={columnData} />
+
+          <div className='productsPaginationWrap'>       
+                  {resultPerPage < filteredProductsCount && (
+                    <div className="paginationBox">
+                      <Pagination
+                        activePage={currentPage.page}
+                        itemsCountPerPage={resultPerPage}
+                        totalItemsCount={productCount}
+                        onChange={setCurrentPageNo}
+                        nextPageText="Next"
+                        prevPageText="Prev"
+                        firstPageText="1st"
+                        lastPageText="Last"
+                        itemClass="page-item"
+                        linkClass="page-link"
+                        activeClass="pageItemActive"
+                        activeLinkClass="pageLinkActive"
+                      />
+                    </div>
+                  )}
+                </div>
            
         </div>
       </div>

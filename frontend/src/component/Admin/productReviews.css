@@ -49,4 +49,6 @@
 .noReviewsFound {
   margin: 0 1rem 3rem 1rem;
   text-align: center;
+  font-family: 'Robodo', Arial, Helvetica, sans-serif;
+  color: rgb(71, 71, 71);
 }

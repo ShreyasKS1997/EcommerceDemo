@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import './DataList.css';
 import Loader from './component/layout/loader/loader';
 
-export const DataList = ({data, onViewDetailsClick}) => {
+export const DataList = ({data}) => {
 
     const excludeData = data.excludeData ?? [];
 
@@ -86,7 +86,7 @@ export const DataList = ({data, onViewDetailsClick}) => {
                                                 {data.ActionButtons.map((itemButton, index) => {
                                                     return (
                                                         
-                                                        <button onClick={(e) => data.ActionButtonsHandler[index](e, item)}>
+                                                        <button disabled={data.activeUserSandboxId !== item.sandboxId} onClick={(e) => data.ActionButtonsHandler[index](e, item)}>
                                                             {itemButton}
                                                         </button>
                                                         
