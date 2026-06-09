@@ -13,6 +13,7 @@ import Loader from '../layout/loader/loader';
 import { addNotification, selectActiveAccount } from '../../SliceThunks/utils.jsx';
 import { useDeleteTestUserMutation, useGenerateTestUserMutation, useLoadTestUsersQuery, useLoadUserQuery } from '../../Services/userApi.jsx';
 import { MuiTheme } from '../../MuiTheme.jsx';
+import { DataList } from '../../DataList.jsx';
 
 const UsersList = () => {
   const dispatch = useDispatch();
@@ -28,11 +29,11 @@ const UsersList = () => {
 
   const loadTestUsersData = data || [];
 
-  const deleteUserHandler = useCallback(async(e, id) => {
+  const deleteUserHandler = useCallback(async(e, userDetails) => {
     e.stopPropagation();
     try {
       SetDeleteButtonDisabled(true);
-      await deleteTestUser(id).unwrap();
+      await deleteTestUser(userDetails['User Id']).unwrap();
       SetDeleteButtonDisabled(false);
     } catch(error) {
       console.log(error);
@@ -40,95 +41,46 @@ const UsersList = () => {
     }
   }, [deleteTestUser]);
 
+  const editUserHandler = useCallback((e, userDetails) => {
+    e.stopPropagation();
+    navigate(`/admin/user/${userDetails['User Id']}`);
+  });
+
   const handleClickEvent = (e, testUserQuantity) => {
     e.stopPropagation();
     e.preventDefault();
     generateTestUser(testUserQuantity);
   };
 
-  const handleTestNowButtonClick = useCallback((e, id) => {
+  const handleTestNowButtonClick = useCallback((e, userDetails) => {
     e.stopPropagation();
     e.preventDefault();
-    dispatch(switchAccount(id));
+    dispatch(switchAccount(userDetails['User Id']));
   }, [dispatch]);
-
-  const columns = useMemo(() => [
-    { field: 'id', headerName: 'User ID', minWidth: 180, flex: 0.8 },
-
-    {
-      field: 'email',
-      headerName: 'Email',
-      minWidth: 200,
-      flex: 1,
-    },
-    {
-      field: 'name',
-      headerName: 'Name',
-      minWidth: 150,
-      flex: 0.5,
-    },
-
-    {
-      field: 'role',
-      headerName: 'Role',
-      type: 'number',
-      minWidth: 150,
-      flex: 0.3,
-      cellClassName: (params) => {
-        return params.id === 'test_admin' ? 'greenColor' : 'redColor';
-      },
-    },
-
-    {
-      field: 'test_live',
-      headerName: 'Test live',
-      type: 'number',
-      sortable: false,
-      renderCell: (params) => {
-        return (
-          <>
-            <button onClick={(e) => handleTestNowButtonClick(e, params.id)}>
-              Test now
-            </button>
-          </>
-        )
-      },
-    },
-
-    {
-      field: 'actions',
-      flex: 0.3,
-      headerName: 'Actions',
-      minWidth: 150,
-      type: 'actions',
-      sortable: false,
-      renderCell: (params) => {
-        return (
-          <>
-            <Button onClick={() => navigate(`/admin/user/${params.id}`)}>
-              <EditIcon />
-            </Button>
-            <Button disabled={deleteButtonDisabled} onClick={(e) => deleteUserHandler(e, params.id)}>
-              <DeleteIcon />
-            </Button>
-          </>
-        );
-      },
-    },
-  ], [navigate, deleteUserHandler, deleteButtonDisabled, handleTestNowButtonClick]
-);
 
   const rows = useMemo(() => {
     return Object.values(loadTestUsersData).filter((values) => (account._id !== values._id && account.createdBy !== values._id))
       .map((values) => ({
-        id: values._id,
-        role: values.role,
-        email: values.email,
-        name: values.name
+        'User Id': values._id,
+        Role: values.role,
+        Email: values.email,
+        Name: values.name
       }))
   }, [loadTestUsersData, account]);
 
-  if (loadTestUsersReqLoading) {
+  const columnData = {
+    heading: ['User Id', 'Role', 'Email', 'Name', 'Actions'],
+    data: rows,
+    columnLength: 6,
+    gridCellTemplateColumn: '2fr 1fr 3fr 1fr 1fr 1fr',
+    viewDetailsButton: false,
+    ActionButtons: [<EditIcon/>, <DeleteIcon/>],
+    ActionButtonsHandler: [editUserHandler, deleteUserHandler],
+    CustomColumnsButton: [{'Test Live': 'Test now'}],
+    CustomColumnsButtonClickHandler: [handleTestNowButtonClick]
+  }
+
+  if (loadTestUsersReqLoading || delTestUserReqLoading || generateTestUserReqLoading) {
     return <Loader/>
   }
 
@@ -150,17 +102,8 @@ const UsersList = () => {
             <button type='submit'>Auto generate test users</button>
           </form>
 
-          <ThemeProvider theme={MuiTheme}>
-            <DataGrid
-              rows={rows}
-              columns={columns}
-              pageSize={10}
-              disableSelectionOnClick
-              className="productListTable"
-              loading={loadTestUsersReqLoading || delTestUserReqLoading || generateTestUserReqLoading}
-              autoHeight
-            />
-          </ThemeProvider>
+          <DataList data={columnData} />
+          
         </div>
       </div>
     </>

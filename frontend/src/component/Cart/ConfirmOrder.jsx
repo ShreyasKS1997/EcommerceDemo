@@ -17,14 +17,14 @@ const ConfirmOrder = () => {
   const {cartItems} = useSelector((state) => state.cart);
   const { data: user, isLoading, isError } = useLoadUserQuery();
 
-  const subtotal = Object.values(cartItems).reduce(
+  const subtotal = Math.round(Object.values(cartItems).reduce(
     (acc, item) => acc + item.quantity * item.price,
     0
-  );
+  ));
 
   const shippingCharges = subtotal > 1000 ? 0 : 200;
 
-  const tax = subtotal * 0.18;
+  const tax = Math.round(subtotal * 0.18);
 
   const totalPrice = subtotal + tax + shippingCharges;
 
@@ -80,14 +80,17 @@ const ConfirmOrder = () => {
               {cartItems &&
                 Object.keys(cartItems).map((key) => (
                   <div key={key}>
-                    <img src={cartItems[key].images[0].url} alt="Product" />
+                    <div>
+                      <img src={cartItems[key].images[0].url} alt="Product" />
+                    </div>
                     <Link to={`/product/${key}`}>
                       {cartItems[key].name}
                     </Link>
                     <span>
-                      {cartItems[key].quantity} x {cartItems[key].price} &nbsp;=
-                      <b>₹ {cartItems[key].price * cartItems[key].quantity}</b>
+                      {'(' + cartItems[key].quantity} x {cartItems[key].price + ')'} 
                     </span>
+                    <p>=</p>
+                    <b>₹{cartItems[key].price * cartItems[key].quantity}</b>
                   </div>
                 ))}
             </div>

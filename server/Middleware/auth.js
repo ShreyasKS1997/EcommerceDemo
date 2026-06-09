@@ -18,12 +18,12 @@ exports.isAuth = asyncErrorHandler(async (req, res, next) => {
     return next(new ErrorHandler('SESSION_REVOKED', 401, res));
   }
 
-    if (hashedToken === refreshTokenUser.oldTokenHash) {
-      const createdTime = new Date(refreshTokenUser.rotationTime).getTime();
-      if((Date.now() - createdTime) > 30000) {
-        return next(new ErrorHandler('Refresh token grace period expired', 401));
-      }
-    } 
+  if (hashedToken === refreshTokenUser.oldTokenHash) {
+    const createdTime = new Date(refreshTokenUser.rotationTime).getTime();
+    if((Date.now() - createdTime) > 30000) {
+      return next(new ErrorHandler('Refresh token grace period expired', 401));
+    }
+  } 
 
   const token = req.headers.authorization?.split(' ')[1];
   if (!token) {

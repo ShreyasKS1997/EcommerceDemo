@@ -46,7 +46,7 @@ const Dashboard = () => {
 
 
   const lineState = useMemo(() => ({
-    labels: ['Initial Amount', 'Amount Earned'],
+    labels: [['Initial', 'Amount'], ['Amount', 'Earned']],
     datasets: [
       {
         label: 'TOTAL AMOUNT',
@@ -68,6 +68,11 @@ const Dashboard = () => {
       },
     ],
   }), [stock]);
+
+const options = {
+  responsive: true,
+  maintainAspectRatio: false, 
+};
 
 
   if (isGetAllOrdersLoading || isGetAllProductQueryLoading) {
@@ -106,10 +111,10 @@ const Dashboard = () => {
 
           <div className='charts'>
               <div className="lineChart">
-                  <Line data={lineState} />
+                  <Line data={lineState} options={options} />
               </div>
               <div className="doughnutChart">
-                  <Doughnut data={doughnutState} />
+                  <Doughnut data={doughnutState} options={options} />
               </div>
           </div>
         </div>

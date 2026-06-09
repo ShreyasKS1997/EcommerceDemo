@@ -13,6 +13,7 @@ import { useDeleteOrderAdminMutation, useGetAllOrdersAdminQuery } from '../../Se
 import Loader from '../layout/loader/loader';
 import { useDispatch } from 'react-redux';
 import { addNotification } from '../../SliceThunks/utils';
+import { DataList } from '../../DataList';
 
 const OrderList = () => {
 
@@ -24,74 +25,36 @@ const OrderList = () => {
 
   const orders = data?.orders || [];
 
-  const deleteOrderHandler = useCallback((id) => {
-    deleteOrder(id);
+  const deleteOrderHandler = useCallback((e, orderDetails) => {
+    deleteOrder(orderDetails['Order Id']);
   }, [deleteOrder]);
 
-  const columns = useMemo(() => [
-      { field: 'id', headerName: 'Order ID', minWidth: 300, flex: 1 },
-
-      {
-        field: 'status',
-        headerName: 'Status',
-        minWidth: 150,
-        flex: 0.5,
-        cellClassName: (params) => {
-          return params.row.status === 'Delivered' ? 'greenColor' : 'redColor';
-        },
-      },
-      {
-        field: 'itemsQty',
-        headerName: 'Items Qty',
-        type: 'number',
-        minWidth: 150,
-        flex: 0.4,
-      },
-
-      {
-        field: 'amount',
-        headerName: 'Amount',
-        type: 'number',
-        minWidth: 270,
-        flex: 0.5,
-      },
-
-      {
-        field: 'actions',
-        flex: 0.3,
-        headerName: 'Actions',
-        minWidth: 150,
-        type: 'actions',
-        sortable: false,
-        renderCell: (params) => {
-          return (
-            <>
-              <Button onClick={(e) => {e.stopPropagation(); navigate(`/admin/order/${params.id}`)}}>
-                <EditIcon />
-              </Button>
-
-              <Button onClick={(e) => {e.stopPropagation(); deleteOrderHandler(params.id)}} disabled={deleteOrderLoading}>
-                <DeleteIcon />
-              </Button>
-            </>
-          );
-        },
-      },
-    ], [navigate, deleteOrderLoading, deleteOrderHandler]
-  );
-
+  const editOrderHandler = useCallback((e, orderDetails) => {
+    e.stopPropagation();
+    navigate(`/admin/order/${orderDetails['Order Id']}`);
+  });
 
   const rows = useMemo(() => {
     if (!orders) return [];
     return orders.map((item) => ({
-        id: item._id,
-        itemsQty: item.orderItems.length,
-        amount: item.totalPrice,
-        status: item.orderStatus,
+        'Order Id': item._id,
+        Items: item.orderItems.length,
+        Amount: item.totalPrice,
+        Status: item.orderStatus,
     }));
   }, [orders]);
 
-  if (isLoading) {
+  const columnData = {
+    heading: ['Order Id', 'Items', 'Amount', 'Status', 'Actions'],
+    data: rows,
+    columnLength: 4,
+    gridCellTemplateColumn: '2fr 1fr 1fr 1fr 1fr',
+    viewDetailsButton: false,
+    ActionButtons: [<EditIcon/>, <DeleteIcon/>],
+    ActionButtonsHandler: [editOrderHandler, deleteOrderHandler],
+  }
+
+  if (isLoading || deleteOrderLoading) {
     return <Loader/>
   }
 
@@ -108,16 +71,7 @@ const OrderList = () => {
         <div className="productListContainer">
           <h1 id="productListHeading">ALL ORDERS</h1>
 
-          <ThemeProvider theme={MuiTheme}>
-            <DataGrid
-              rows={rows}
-              columns={columns}
-              pageSize={10}
-              disableSelectionOnClick
-              autoHeight
-              loading={deleteOrderLoading}
-            />
-          </ThemeProvider>
+          <DataList data={columnData} />
         </div>
       </div>
     </>

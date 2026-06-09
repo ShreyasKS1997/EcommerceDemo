@@ -215,6 +215,10 @@ export const Navbar = () => {
                             <div>Cart</div>
                         </a>
                     </div>
+
+                    {authStatus === 'authenticated' && <a onClick={(e) => handleLogout(e)} className="nav-link-item logoutBtnSmallScrn">
+                        <div className="nav-link-item-sub">Logout</div>
+                    </a>}
                 </div>
             </div>
         </nav>
