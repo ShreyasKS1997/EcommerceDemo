@@ -1,6 +1,7 @@
 .dashboard {
   display: flex;
   flex-direction: row;
+  min-height: 90vh;
 }
 
 .dashboardContainer {
@@ -43,7 +44,9 @@
 .charts {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   flex-grow: 1;
+  flex-wrap: wrap;
 }
 
 .lineChart {
@@ -54,6 +57,7 @@
   background-color: rgba(70, 117, 218, 0.842);
   margin: 10px;
   padding: 10px 20px;
+  min-height: 250px;
 }
 
 .doughnutChart {
@@ -62,8 +66,9 @@
   align-items: center;
   border: 2px solid rgba(70, 117, 218);
   border-radius: 10px;
-  padding: 20px;
+  padding: 10px;
   margin: 10px;
+  min-height: 250px;
 }
 
 @media screen and (max-width: 1000px) {
