@@ -7,13 +7,14 @@ import storage from 'redux-persist/lib/storage';
 import { persistStore, persistReducer } from "redux-persist";
 import {cartSliceReducer} from './SliceThunks/cartSliceThunks';
 import orderSlice from './SliceThunks/orderSliceThunks';
+import location from './SliceThunks/locationSliceThunks';
 import middleware from './Services/middleware';
 import {createStateSyncMiddleware, initMessageListener, initStateWithPrevTab} from 'redux-state-sync';
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['auth', 'cart', 'order'],
+  whitelist: ['auth', 'cart', 'order', 'location'],
 }
 
 const combinedReducer = combineReducers({
@@ -22,6 +23,7 @@ const combinedReducer = combineReducers({
   order: orderSlice,
   app: appSliceThunk,
   auth: authSliceReducer,
+  location: location,
   [api.reducerPath]: api.reducer,
 });
 

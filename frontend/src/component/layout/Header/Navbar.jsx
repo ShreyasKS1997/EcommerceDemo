@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import Loader from "../loader/loader";
 import { useNavigate } from "react-router-dom";
 import { switchAccount, logoutAll } from "../../../SliceThunks/userSliceThunks.jsx";
+import { setLocationCity, setLocationPincode } from "../../../SliceThunks/locationSliceThunks.jsx";
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import { useLoadUserQuery, useLogoutMutation } from "../../../Services/userApi.jsx";
 import { api } from "../../../Services/api.jsx";
@@ -30,6 +31,9 @@ export const Navbar = () => {
     const [navLinksopen, SetNavLinksOpen] = useState(false);
 
     const authStatus = useSelector((state) => state.auth.status);
+    const location = useSelector((state) => state.location);
+
+    const [pincode, setPincode] = useState(location.pincode);
 
     useGetCartItemsQuery(undefined, {skip: authStatus === 'unauthenticated'});
     const {cartItems} = useSelector((state) => state.cart);
@@ -64,7 +68,7 @@ export const Navbar = () => {
     const renderSearchResults = () => {       
 
         // Show <loader/> if loading, fetching or debouncing        
-        if (isLoading || debounceValue !== searchTerm || fetching) return <Loader style={{ height: '100%' }} />
+        if (loading || debounceValue !== searchTerm || fetching) return <Loader style={{ height: '100%' }} />
 
         // If error, show error. if no result found show the message
         if(!products || products.length === 0) {
@@ -118,6 +122,22 @@ export const Navbar = () => {
         }
     }
 
+    const handleLocationChangeClick = async(e, value) => {
+        e.stopPropagation();
+        e.preventDefault();
+        const response = await fetch(`https://api.postalpincode.in/pincode/${value}`);
+        
+        if (response.ok) {
+            const data = await response.json();
+            if (data[0].Status === 'Success') {
+                const mainPostOffice = data[0].PostOffice[0];
+                const city = mainPostOffice.Division || mainPostOffice.District;
+                dispatch(setLocationPincode(value));
+                dispatch(setLocationCity(city));
+            }
+        }
+    }
+
     useEffect(() => {
         // For small screen layout when all other layout should be blocked when nav-links are visible/opened
         if (navLinksopen) {
@@ -161,18 +181,17 @@ export const Navbar = () => {
                     {user && user.role !== 'user' && <button className="exitTestAdminUser" onClick={(e) => exitTestAdminOrUserMode(e)}>{user.role === "test_admin" ? 'Exit test admin' : 'Exit test user'}</button>}
                     {/* ------------------------------- Location Section -------------------------------------- */}
                         <div className="nav-link-item LocationInfo">
-                            {/* TODO: Create Selection of Location feature */}
                             <div className="nav-link-item-sub locationInfoSub">
                                 <div className="locationSub">
                                     Location
                                     <PlaceIcon />
                                 </div>
-                                <div className="stateAreaPincode">Select your Location</div>
+                                <div className="stateAreaPincode">{location.city ? location.city : 'Select your Location'}{location.pincode ? ` ${location.pincode}` : ''}</div>
                             </div>
                             <div className="changeLocationBox">
                                 <div className="locationBoxLabel" >Enter your location</div>
-                                <input type="text" size="10" className="locationBoxInput"/>
-                                <input type="button" value="Change" className="locationBoxSubmit"/>
+                                <input value={pincode} onChange={(e) => setPincode(e.currentTarget.value)} type="text" size="10" className="locationBoxInput"/>
+                                <input onClick={(e) => handleLocationChangeClick(e, pincode)} type="button" value="Change" className="locationBoxSubmit"/>
                             </div>
                         </div>
                     {/* ---------------------------------- All Products Page Link ------------------------------------- */}
