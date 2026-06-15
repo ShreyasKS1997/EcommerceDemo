@@ -29,6 +29,7 @@ export const Navbar = () => {
     
     const [searchBoxVisible, setSearchBoxVisible] = useState(false);
     const [navLinksopen, SetNavLinksOpen] = useState(false);
+    const [locationBoxVisible, SetLoctationBoxVisible] = useState(false);
 
     const authStatus = useSelector((state) => state.auth.status);
     const location = useSelector((state) => state.location);
@@ -175,20 +176,22 @@ export const Navbar = () => {
 
             {/* ---------------------------------------------- Navigation Links -------------------------------------------------*/}
             <div className={`nav-links ${!navLinksopen ? 'nav-links-hidden' : ''}`}> 
-                <div className="nav-links-background-dim"></div>
+                <div onClick={() => SetNavLinksOpen(false)} className="nav-links-background-dim"></div>
                 <div className="nav-links-main">
                     <div onClick={handleOpenNavLinkBoxCLick} className='closeNavButton'></div>
                     {user && user.role !== 'user' && <button className="exitTestAdminUser" onClick={(e) => exitTestAdminOrUserMode(e)}>{user.role === "test_admin" ? 'Exit test admin' : 'Exit test user'}</button>}
                     {/* ------------------------------- Location Section -------------------------------------- */}
                         <div className="nav-link-item LocationInfo">
-                            <div className="nav-link-item-sub locationInfoSub">
+                            <div onClick={() => SetLoctationBoxVisible(!locationBoxVisible)} className="nav-link-item-sub locationInfoSub">
                                 <div className="locationSub">
                                     Location
                                     <PlaceIcon />
                                 </div>
                                 <div className="stateAreaPincode">{location.city ? location.city : 'Select your Location'}{location.pincode ? ` ${location.pincode}` : ''}</div>
                             </div>
-                            <div className="changeLocationBox">
+                            <div onClick={() => SetLoctationBoxVisible(false)} className={`changeLocationBoxDim ${locationBoxVisible ? 'visible' : 'hidden'}`}></div>
+                            <div className={`changeLocationBox ${locationBoxVisible ? 'visible' : 'hidden'}`}>
+                                <div onClick={() => SetLoctationBoxVisible(false)} className="closeIcon"></div>
                                 <div className="locationBoxLabel" >Enter your location</div>
                                 <input value={pincode} onChange={(e) => setPincode(e.currentTarget.value)} type="text" size="10" className="locationBoxInput"/>
                                 <input onClick={(e) => handleLocationChangeClick(e, pincode)} type="button" value="Change" className="locationBoxSubmit"/>
