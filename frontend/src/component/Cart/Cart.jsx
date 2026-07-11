@@ -101,7 +101,6 @@ const Cart = () => {
             </div>
 
             <div className='productQuantity textCenter'>
-              {console.log(value)}
               <button onClick={() => decreaseQuantity(id, value.quantity)}>-</button>
               <input min={1} max={1} type='number' value={value.quantity}/>
               <button onClick={() => increaseQuantity(id, value.quantity, value.stock)}>+</button>

@@ -3,6 +3,7 @@ import './CartItemCard.css';
 import { Link } from 'react-router-dom';
 
 const CartItemCard = ({ item, deleteCartItems }) => {
+  console.log(item)
   return (
     <div className="CartItemCard">
       <img src={item.images[0].url} alt="ssa" />
