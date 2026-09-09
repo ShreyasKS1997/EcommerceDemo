@@ -504,6 +504,9 @@ exports.forgotPassword = asyncErrorHandler(async (req, res, next) => {
     'host'
   )}/password/reset/${resetToken}`;
 
+  console.log(resetPasswordURL);
+  console.log('sdf');
+
   const message = `Click the below link to reset your password \n\n ${resetPasswordURL}`;
 
   try {
