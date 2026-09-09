@@ -1,4 +1,3 @@
-const { isReadable } = require('nodemailer/lib/xoauth2');
 const asyncErrorHandler = require('../Middleware/asyncErrorHandler');
 const productSchema = require('../DBSchema/productSchema');
 const ErrorHandler = require('../utils/ErrorHandler');

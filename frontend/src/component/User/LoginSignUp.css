@@ -4,6 +4,13 @@
   align-items: center;
   background-color: rgb(231, 231, 231);
   padding: 4vmax 0;
+  gap: 20px;
+}
+
+.LoginSignUpContainer > div > h3 {
+  font-family: 'Robodo', Arial, Helvetica, sans-serif;
+  margin: 10px;
+  color: rgb(26, 26, 26);
 }
 
 .LoginSignUpBox {
@@ -14,6 +21,7 @@
   flex-direction: column;
   width: 350px;
   box-shadow: 0 0 10px -2px grey;
+  border-radius: 10px;
 }
 
 .longinSignUpWrap {
@@ -163,4 +171,10 @@
 .shiftToNeutralForm {
   transform: translateX(0%);
   position: relative;
+}
+
+@media screen and (max-width: 800px) {
+  .LoginSignUpContainer {
+    flex-direction: column;
+  }
 }

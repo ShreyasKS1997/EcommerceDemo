@@ -77,6 +77,8 @@ const UpdateProfile = () => {
             encType="multipart/form-data"
             onSubmit={updateProfileSubmit}
           >
+          <div><p>The Name and profile image resets back to default after 5 minutes.</p></div>
+          <p>The Value is updated only when anyone logs into this account the next time.</p>
             <div className="updateProfileName">
               <FaceIcon />
               <input

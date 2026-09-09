@@ -18,7 +18,7 @@ const ResetPassword = () => {
   const [newPassVisible, setnewPassVisible] = useState(false);
   const [newConfirmPassVisible, setnewConfirmPassVisible] = useState(false);
 
-  const [resetPassword, {isLoading}] = useResetPasswordMutation();
+  const [resetPassword, {isSuccess, isLoading}] = useResetPasswordMutation();
 
   const newPassVisToggle = () => {
     if (!newPassVisible) {
@@ -58,6 +58,7 @@ const ResetPassword = () => {
             className="resetPasswordForm"
             onSubmit={HandleChangePassword}
           >
+            <div className='successMsgWrap'>{isSuccess ? <div className='successMsg'><h4>Success</h4></div>: ''}</div>
             <div className="newPasswordInputWrap">
               <LockOpenIcon />
               <input

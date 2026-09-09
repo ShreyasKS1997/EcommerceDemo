@@ -31,6 +31,7 @@ const Profile = () => {
       await deleteAllData().unwrap();
       window.location.reload();
     } catch(error) {
+      setIsOpen(false);
       console.log(error);
     }
   }
