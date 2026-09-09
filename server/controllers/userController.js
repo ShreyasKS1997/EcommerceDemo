@@ -120,7 +120,7 @@ exports.registerUser = asyncErrorHandler(async (req, res, next) => {
   }
 
   if (email === 'someone@example.com') {
-    //return next(new ErrorHandler('Reserved email. Not allowed', 401)); // Unauthorized
+    return next(new ErrorHandler('Reserved email. Not allowed', 401)); // Unauthorized
   }
 
   if (req.cookies.token || req.headers.authorization) {
