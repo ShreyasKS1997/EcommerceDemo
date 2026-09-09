@@ -17,7 +17,7 @@ import LockOpenIcon from '@mui/icons-material/LockOpen';
 import FaceIcon from '@mui/icons-material/Face';
 import { useDispatch, useSelector } from 'react-redux';
 import { storeAndSetActiveAccount } from '../../SliceThunks/userSliceThunks';
-import { usePostLoginMutation, usePostRegisterMutation } from '../../Services/userApi';
+import { useGetTestPasswordQuery, usePostLoginMutation, usePostRegisterMutation } from '../../Services/userApi';
 
 const LoginSignUp = () => {
 
@@ -41,6 +41,7 @@ const LoginSignUp = () => {
 
   const {cartItems} = useSelector((state) => state.cart);
 
+  const {data:testPassword, isLoading:testPasswordLoading, error:testPasswordLoadError} = useGetTestPasswordQuery();
   const [postRegister, {isLoading:registerLoading, error:registerError}] = usePostRegisterMutation();
   const [postLogin, {isLoading:loginLoading , error:loginError}] = usePostLoginMutation();
   const authStatus = useSelector((state) => state.auth.status);
@@ -139,6 +140,11 @@ const LoginSignUp = () => {
   return (
       <>
         <div className="LoginSignUpContainer">
+          <div>
+            <h3>Test this website using below credentials:</h3>
+            <h3>Email: someone@example.com</h3>
+            <h3>Password: {testPasswordLoading ? "" : testPassword.password }</h3>
+          </div>
           <div className="LoginSignUpBox">
             <div>
               <div className="login_signUp_toggle">

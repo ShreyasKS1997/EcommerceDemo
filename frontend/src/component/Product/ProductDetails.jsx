@@ -127,18 +127,22 @@ const ProductDetails = () => {
       <MetaData title={`${product.name} .. ECOMMERCE`} />
       <div className="productDetails">
         <div className="carouselImageBlock">
-          <Carousel sx={{width: '400px', height: '320px'}}>
+          <Carousel sx={{width: '410px', height: '320px'}}>
             {product.images &&
               product.images.map((item, i) => (
-                <img
-                  className="CarouselImage"
-                  key={item && item.url}
-                  src={item && item.url}
-                  alt={`${i} Slide`}
-                />
+                <div className='CarouselWrap'>
+                  <img
+                    className="CarouselImage"
+                    key={item && item.url}
+                    src={item && item.url}
+                    alt={`${i} Slide`}
+                  />
+                </div>
               ))}
           </Carousel>
         </div>
+
+        <hr className='dividerVertical' />
 
         <div className="detailsBlockMain">
           <div className="productName">

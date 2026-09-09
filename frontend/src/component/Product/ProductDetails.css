@@ -1,24 +1,44 @@
 .productDetails {
   width: 100%;
-  padding: 2vmax;
+  height: 100%;
+  padding: 2rem;
   box-sizing: border-box;
   background-color: white;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
+  box-shadow: 0 -10px 20px 1px grey;
 }
 
 .carouselImageBlock {
-  border: 1px solid white;
+  padding: 2rem;
+  flex: 1;
   display: flex;
   align-items: center;
-  text-align: center;
+  justify-content: center;
+}
+
+.CarouselWrap {
+  background-color: rgb(238, 238, 238);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  border: 1px dotted rgb(202, 202, 202);
 }
 
 .CarouselImage {
-  width: 400px;
-  height: 280px;
+  display: flex;
+  width: auto;
+  height: 250px;
+  padding: 10px;
+}
+
+.dividerVertical {
+  align-self: stretch;
+  width: 2px;
+  color: rgb(216, 0, 0) !important;
 }
 
 .detailsBlockMain {
@@ -26,9 +46,9 @@
   flex-direction: column;
   justify-content: space-evenly;
   align-items: flex-start;
-  padding: 2vmax;
+  padding: 2rem;
   box-sizing: border-box;
-  border: 1px solid white;
+  flex: 1;
 }
 
 .productName > h2 {
@@ -40,6 +60,7 @@
   margin: 5px 0;
   color: rgba(54, 54, 54, 0.582);
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  overflow-wrap: anywhere;
 }
 
 .ratingsTop {
@@ -49,11 +70,12 @@
   border-top: 1px solid rgba(0, 0, 0, 0.205);
   border-bottom: 1px solid rgba(0, 0, 0, 0.205);
   width: 100%;
-  padding: 1vmax 0;
+  padding: 0.8em 0;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
 .numOfReviews {
-  margin-left: 10px;
   color: rgba(0, 0, 0, 0.699);
   font-family: Arial, Helvetica, sans-serif;
   white-space: nowrap;
@@ -68,9 +90,9 @@
 .priceAddToCartStatus > p {
   border-top: 1px solid rgba(0, 0, 0, 0.205);
   border-bottom: 1px solid rgba(0, 0, 0, 0.205);
-  padding: 1vmax 0;
+  padding: 1em 0;
   color: rgba(0, 0, 0, 0.651);
-  margin: 1vmax 0;
+  margin: 1em 0;
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
 }
 
@@ -82,7 +104,7 @@
 .increaseDecreaseQuantity > button {
   border: none;
   background-color: rgba(0, 0, 0, 0.616);
-  padding: 0.5vmax;
+  padding: 0.5em;
   cursor: pointer;
   color: white;
   transition: all 0.5s;
@@ -115,8 +137,8 @@
   transition: all 0.2s;
   background-color: var(--primary-color);
   border-radius: 8px;
-  padding: 0.5vmax 2vmax;
-  margin: 1vmax;
+  padding: 0.5em 1em;
+  margin: 1em;
   outline: none;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
@@ -133,7 +155,7 @@
 .submitReview {
   border: none;
   border-radius: 8px;
-  padding: 0.6vmax 2vmax;
+  padding: 0.7em 1em;
   margin-top: 20px;
   color: white;
   cursor: pointer;
@@ -154,29 +176,28 @@
 
 .submitDialogTextArea {
   border: 1px solid rgba(0, 0, 0, 0.082);
-  margin: 1vmax 0;
+  margin: 1em 0;
   outline: none;
   padding: 1rem;
 }
 
 .reviewsSection {
-  margin-bottom: 5vmax;
+  margin-bottom: 2rem;
 }
 
 .reviews {
   display: flex;
   overflow: auto;
-  margin: 2vmax;
+  padding: 15px;
 }
 
 .reviewsHeading {
   color: #000000be;
   text-align: center;
   border-bottom: 1px solid rgba(0, 0, 0, 0.226);
-  padding: 1vmax;
-  width: 20vmax;
-  margin: auto;
-  margin-bottom: 4vmax;
+  width: 50%;
+  margin: 2rem auto;
+  padding-bottom: 1.5rem;
   font-family: 'Inter', Arial, Helvetica, sans-serif;
 }
 
@@ -184,4 +205,47 @@
   text-align: center;
   font-family: 'Robodo', Arial, Helvetica, sans-serif;
   color: rgba(0, 0, 0, 0.548);
+}
+
+@media screen and (max-width: 800px) {
+  .productDetails {
+    flex-direction: column;
+    background-color: rgb(233, 233, 233);
+    padding: 0.5rem;
+  }
+
+  .carouselImageBlock {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 1px rgb(212, 212, 212);
+    border: 1px solid rgb(212, 212, 212);
+    width: 100%;
+    padding: 0;
+  }
+
+  .dividerVertical {
+    display: none;
+  }
+
+  .detailsBlockMain {
+    background-color: white;
+    margin: 40px 0;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 1px rgb(212, 212, 212);
+    width: 100%;
+    padding: 2rem 1rem 3rem;
+  }
+
+  .reviewsSection {
+    margin: 5px;
+    margin-bottom: 2rem;
+  }
+
+  .reviews {
+    padding: 5px;
+  }
+
+  .ratingsTop {
+    gap: 5px;
+  }
 }

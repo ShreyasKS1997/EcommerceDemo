@@ -119,6 +119,10 @@ exports.registerUser = asyncErrorHandler(async (req, res, next) => {
     return next(new ErrorHandler('CREDENTIAL_MISSING', 210)); // Invalid credentials
   }
 
+  if (email === 'someone@example.com') {
+    return next(new ErrorHandler('Reserved email. Not allowed', 401)); // Unauthorized
+  }
+
   if (req.cookies.token || req.headers.authorization) {
     return next(new ErrorHandler('ANOTHER_USER_LOGGED_IN', 403)); // Forbidden. Refresh Token already exist on the client side
   }
@@ -216,6 +220,16 @@ exports.loginUser = asyncErrorHandler(async (req, res, next) => {
     return next(err); // Unauthorized
   }
 
+  if (user.lastProfileDetailsChange && Date.now() > (user.lastProfileDetailsChange.getTime() + 300000)) {
+    user.name = "Someone";
+    user.lastProfileDetailsChange = null;
+    await cloudinary.uploader.destroy(user.avatar.public_id);
+    user.avatar = {
+      public_id: 'DefaultProfileImage',
+      url: 'https://res.cloudinary.com/dn1ykttta/image/upload/v1778742950/avatar/DefaultProfileImage.png',
+    }
+  }
+
   // create new session in db
   const date = new Date();
   date.setDate(date.getDate() + 7); // expiry of refresh token on idle for 7 days
@@ -283,6 +297,27 @@ exports.logout = asyncErrorHandler(async (req, res, next) => {
     message: 'Log out successful',
   });
 });
+
+exports.getTestPassword = asyncErrorHandler(async (req, res, next) => {
+  const user = await User.findOne({email: "someone@example.com"});
+
+  if (user.lastPasswordChange && Date.now() > user.lastPasswordChange.getTime() + 300000) {
+    user.lastPasswordChange = null;
+    user.password = "demcomtest2026";
+    user.testPassword = "demcomtest2026";
+    await user.save();
+  }
+
+  if (!user) {
+    return next(new ErrorHandler("Couldn't load password. Try refreshing the page", 404));
+  } else {
+    res.status(200).json({
+      success: true,
+      password: user.testPassword,
+    });
+  }
+
+})
 
 /*function generatePassword(length) {
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -457,7 +492,7 @@ exports.forgotPassword = asyncErrorHandler(async (req, res, next) => {
   const user = await User.findOne({ email: req.body.email });
 
   if (!user) {
-    return next(new ErrorHandler('USER_NOT_FOUND', 404));
+    return res.status(200).json({success: true});
   }
 
   // get resetPassword token
@@ -471,16 +506,17 @@ exports.forgotPassword = asyncErrorHandler(async (req, res, next) => {
 
   const message = `Click the below link to reset your password \n\n ${resetPasswordURL}`;
 
+  const email = user.email === "someone@example.com" ? "someonedemcom@mailinator.com": user.email;
+
   try {
     await sendEmail({
-      email: user.email,
-      subject: 'password reset link',
+      email: email,
+      subject: 'Demo ecommerce password reset link',
       message,
     });
 
     res.status(200).json({
       success: true,
-      message: `Email sent to ${user.email}`,
     });
   } catch (error) {
     user.resetPasswordToken = undefined;
@@ -513,6 +549,11 @@ exports.resetPassword = asyncErrorHandler(async (req, res, next) => {
   user.resetPasswordToken = undefined;
   user.resetPasswordExpire = undefined;
 
+  if (user.email === "someone@example.com") {
+    user.lastPasswordChange = Date.now();
+    user.testPassword = req.body.password;
+  }
+
   await user.save();
 
   sendToken(user, 200, res);
@@ -544,6 +585,12 @@ exports.changePassword = asyncErrorHandler(async (req, res, next) => {
 
   user.password = req.body.newPassword;
 
+
+  if (req.user.email === "someone@example.com") {
+    user.lastPasswordChange = Date.now();
+    user.testPassword = req.body.newPassword;
+  }
+
   await user.save();
 
   res.status(200).json({
@@ -553,6 +600,11 @@ exports.changePassword = asyncErrorHandler(async (req, res, next) => {
 
 //Update user profile
 exports.updateUserProfile = asyncErrorHandler(async (req, res, next) => {
+
+  if (req.user.email === "someone@example.com" && req.body.email !== "someone@example.com") {
+    return next(new ErrorHandler('Cannot change Reserved Email. Try creating new account', 409)); //Conflict
+  }
+
   if (!req.body.name && !req.body.email && !req.body.avatar) {
     return res.sendStatus(204);
   }
@@ -580,8 +632,13 @@ exports.updateUserProfile = asyncErrorHandler(async (req, res, next) => {
     };
   }
 
-   req.user.role === 'user' ? await User.findByIdAndUpdate(req.user._id, userProfileData) : 
-   await testAdminUsers.findByIdAndUpdate(req.user._id, userProfileData);
+  if(req.user.email === "someone@example.com") {
+    userProfileData.lastProfileDetailsChange = Date.now();
+  }
+
+  req.user.role === 'user' ? await User.findByIdAndUpdate(req.user._id, userProfileData) : 
+  await testAdminUsers.findByIdAndUpdate(req.user._id, userProfileData);
+
 
   res.status(200).json({
     success: true,
@@ -632,6 +689,11 @@ exports.updateUserRole = asyncErrorHandler(async (req, res, next) => {
 });
 
 exports.deleteAllUserData = asyncErrorHandler(async (req, res, next) => {
+
+  if (req.user.name === "Someone" && req.user.email === "someone@example.com") {
+    return next(new ErrorHandler('Cannot delete reserved account. Try creating new account', 409)); // Conflict, Main test account.
+  }
+
   await orderSchema.deleteMany({sandboxId: req.user.sandboxId});
 
   await productSchema.deleteMany({sandboxId: req.user.sandboxId});

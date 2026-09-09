@@ -28,7 +28,7 @@
 }
 
 .createProductFormVisible {
-  transform: translateX(calc(-50% + 50px));
+  transform: translateX(calc(-34% + 50px));
   transition: all 0.2s ease-in;
 }
 
@@ -74,7 +74,7 @@
 .imageEditBoxVisible {
   visibility: visible;
   opacity: 1;
-  transform: translateX(calc(50% + 70px));
+  transform: translateX(calc(87% + 70px));
   transition: opacity 0.1s 0.3s, transform 0.2s 0.2s, visibility 0s;
 }
 
@@ -83,6 +83,12 @@
   opacity: 0;
   transform: translateX(0px);
   transition: opacity 0.2s, transform 0.2s, visibility 0s 0.2s;
+}
+
+.imageEditBoxDim {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .imageEditBoxWrap {
@@ -127,7 +133,7 @@
 
 .imagesBox {
   max-height: 60vh;
-  overflow-y: scroll;
+  overflow-y: auto;
   border: 1px solid gray;
   user-select: none;
   font-family: 'Robodo', Arial, Helvetica, sans-serif;
@@ -271,8 +277,8 @@
 .createProductForm > div > input,
 .createProductForm > div > select,
 .createProductForm > div > textarea {
-  padding: 1vmax 4vmax;
-  padding-right: 1vmax;
+  padding: 1em 3em;
+  padding-right: 1em;
   width: 100%;
   box-sizing: border-box;
   border: 1px solid rgba(0, 0, 0, 0.267);
@@ -282,7 +288,7 @@
 
 .createProductForm > div > svg {
   position: absolute;
-  transform: translateX(1vmax);
+  transform: translateX(0.3em);
   color: rgba(0, 0, 0, 0.623);
 }
 
@@ -296,7 +302,7 @@
   background-color: var(--primary-color);
   color: white;
   width: 100%;
-  padding: 0.8vmax;
+  padding: 0.5em;
   cursor: pointer;
   transition: all 0.2s;
   border-radius: 4px;
@@ -332,4 +338,38 @@
 .imageInputButtonLabel:hover {
   background-color: var(--secondary-hover);
   cursor: pointer;
+}
+
+@media screen and (max-width: 750px) {
+
+  .imageEditBoxDim.visible {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.637);
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  .imageEditBoxDim.hidden {
+    height: 0;
+    width: 0;
+    background-color: rgba(0, 0, 0, 0);
+    transition: background-color 0.2s ease-in-out, height 0.1s ease 0.2s, width 0.1s ease 0.2s;
+  }
+
+  .imageEditBox::before {
+    display: none;
+  }
+
+  .createProductFormVisible,.createProductFormHidden {
+    transform: translateX(0);
+  }
+
+  .imageEditBoxVisible, .imageEditBoxHidden {
+    transform: translateX(0);
+  }
+
+  .imageEditBoxVisible {
+    transition: opacity 0.2s ease-out 0.1s, visibility 0s;
+  }
+  
 }

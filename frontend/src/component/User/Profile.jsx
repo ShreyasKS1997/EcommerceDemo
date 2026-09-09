@@ -4,9 +4,10 @@ import Loader from '../layout/loader/loader';
 import { Link } from 'react-router-dom';
 import './Profile.css';
 import {Skeleton} from '../layout/Header/Skeleton'
-import { storeAndSetActiveAccount } from '../../SliceThunks/userSliceThunks';
-import { useDeleteAllDataMutation, useGenerateTestAdminMutation, useLazyLoadTestAdminQuery, useLoadUserQuery } from '../../Services/userApi';
+import { logoutAll, storeAndSetActiveAccount, switchAccount } from '../../SliceThunks/userSliceThunks';
+import { useDeleteAllDataMutation, useGenerateTestAdminMutation, useLazyLoadTestAdminQuery, useLoadUserQuery, useLogoutMutation } from '../../Services/userApi';
 import { useEffect, useState } from 'react';
+import { api } from '../../Services/api';
 
 
 const Profile = () => {
@@ -19,6 +20,7 @@ const Profile = () => {
   const [fetchData, {isLoading:testAdminLoading, error:testAdminError}] = useLazyLoadTestAdminQuery();
   const [generateTestAdmin, {isLoading:generateTestAdminLoading, error:generateTestAdminError}] = useGenerateTestAdminMutation();
   const [deleteAllData, {isLoading: isAllDataDeleting, isError:allDatatDeleteError}] = useDeleteAllDataMutation();
+  const [logout] = useLogoutMutation();
 
   const openDialog = () => setIsOpen(true);
   const closeDialog = () => setIsOpen(false);
@@ -29,6 +31,7 @@ const Profile = () => {
       await deleteAllData().unwrap();
       window.location.reload();
     } catch(error) {
+      setIsOpen(false);
       console.log(error);
     }
   }
@@ -51,6 +54,17 @@ const Profile = () => {
         console.log(error);
       }
     }
+  }
+
+  const handleLogout = async(e) => {
+      e.preventDefault();
+      if (user?.role !== 'user') {
+          dispatch(switchAccount(user.createdBy));
+          return;
+      }
+      logout();
+      dispatch(logoutAll());
+      dispatch(api.util.resetApiState());
   }
 
   useEffect(() => {
@@ -116,6 +130,8 @@ const Profile = () => {
               }
               <Link to="/orders">My Orders</Link>
               {user.role === 'user' && <Link to="/password/update">Change Password</Link>}
+              <Link to={'/cart'}>Cart</Link>
+              <Link onClick={handleLogout}>Logout</Link>
             </div>
           </div>
         </div>

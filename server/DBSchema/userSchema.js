@@ -69,6 +69,21 @@ const userSchema = new mongoose.Schema({
     default: {},
   },
 
+  lastPasswordChange: {
+    type: Date,
+    default: null,
+  },
+
+  lastProfileDetailsChange: {
+    type: Date,
+    default: null,
+  },
+
+  testPassword: {
+    type: String,
+    default: null,
+  },
+
   resetPasswordToken: String,
   resetPasswordExpire: Date,
 });

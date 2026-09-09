@@ -1,10 +1,9 @@
 .productCard {
-  width: 20%;
+  width: 10rem;
   display: flex;
   flex-direction: column;
   text-decoration: none;
   color: rgb(48, 48, 48);
-  margin: 0.5vmax;
   transition: all 0.1s;
   padding-bottom: 0.5vmax;
   box-sizing: border-box;
@@ -12,6 +11,7 @@
   justify-content: stretch;
   border: 1px solid rgba(75, 74, 74, 0.1);
   min-width: 130px;
+  justify-self: center;
 }
 
 .productCard > img {
@@ -31,25 +31,24 @@
 }
 
 .productCardSpan {
-  margin: 0.3vmax;
+  margin: 0.5rem;
   font-family: 'Roboto';
   font-size: 10px;
   white-space: nowrap;
 }
 
 .productCard > p {
-  margin: 1vmax 0.5vmax;
+  margin: 1rem 0.5rem;
   margin-bottom: 0;
   font-family: 'Inter';
-  font-size: 1rem;
 }
 
 .productCard > span {
-  margin: 0.5vmax;
+  margin: 0.5rem;
   font-family: 'Roboto';
 }
 
 .productCard:hover {
   box-shadow: 0 0 10px rgba(15, 15, 15, 0.1);
-  transform: translateY(-0.1vmax);
+  transform: translateY(-0.1rem);
 }

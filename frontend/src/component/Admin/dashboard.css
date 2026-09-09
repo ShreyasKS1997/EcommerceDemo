@@ -1,41 +1,41 @@
 .dashboard {
   display: flex;
   flex-direction: row;
+  min-height: 90vh;
 }
 
 .dashboardContainer {
   display: flex;
   flex-direction: column;
-  width: 100%;
   background-color: #e4e4e4;
+  flex-grow: 1;
+  justify-content: stretch;
 }
 
 .note {
-  margin: 10px 0 0 10px;
+  margin: 10px;
   font-family: 'Inter', Arial, Helvetica, sans-serif;
 }
 
 .dashboardSummary {
   display: flex;
-  flex-direction: row;
-  background-color: rgba(70, 117, 218, 0.842);
-  justify-content: space-evenly;
   padding: 20px;
-  margin: 10px 10px 0 10px;
+  background-color: rgba(70, 117, 218, 0.842);
   border: 2px solid rgba(70, 117, 218);
-  border-radius: 10px;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 .dashboardSummaryElement {
+  flex-grow: 1;
   background-color: rgb(255, 233, 174);
-  padding: 20px;
+  padding: 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   border-radius: 20px;
-  width: 12%;
   font-family: 'Robodo', Arial, Helvetica, sans-serif;
   font-weight: 600;
   color: rgba(0, 0, 0, 0.836);
@@ -44,25 +44,47 @@
 .charts {
   display: flex;
   flex-direction: row;
-  width: 100%;
-  padding: 10px;
+  justify-content: center;
+  flex-grow: 1;
+  flex-wrap: wrap;
 }
 
 .lineChart {
-  width: calc(70% - 5px);
-  background-color: rgba(70, 117, 218, 0.842);
-  margin: 5px;
-  padding: 20px;
   border: 2px solid rgba(70, 117, 218);
   border-radius: 10px;
+  box-sizing: border-box;
+  position: relative;
+  background-color: rgba(70, 117, 218, 0.842);
+  margin: 10px;
+  padding: 10px 20px;
+  min-height: 250px;
 }
 
 .doughnutChart {
-  width: calc(30% - 5px);
   background-color: rgba(70, 117, 218, 0.842);
-  margin: 5px;
   display: flex;
   align-items: center;
   border: 2px solid rgba(70, 117, 218);
   border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  min-height: 250px;
+}
+
+@media screen and (max-width: 1000px) {
+  .dashboardSummary {
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .dashboard {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .charts {
+    flex-direction: column;
+  }
 }

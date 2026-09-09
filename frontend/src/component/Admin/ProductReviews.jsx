@@ -13,6 +13,7 @@ import { skipToken } from '@reduxjs/toolkit/query';
 import {MuiTheme} from '../../MuiTheme';
 import { useDispatch } from 'react-redux';
 import { addNotification } from '../../SliceThunks/utils';
+import { DataList } from '../../DataList';
 
 const ProductReviews = () => {
 
@@ -26,65 +27,32 @@ const ProductReviews = () => {
 
   const reviews = data?.reviews || [];
 
-  const deleteReviewHandler = useCallback((id, Pid) => {
-    deleteReview({id: id, productId: Pid});
+  const deleteReviewHandler = useCallback((event, productDetails) => {
+    deleteReview({id: productDetails['Product Id'], productId: productDetails.pid});
   }, [deleteReview]);
-
-
-  const columns = useMemo(() => [
-    { field: 'id', headerName: 'Review ID', flex: 0.2 },
-
-    {
-      field: 'user',
-      headerName: 'User',
-      flex: 0.2,
-    },
-
-    {
-      field: 'comment',
-      headerName: 'Comment',
-      flex: 0.4,
-    },
-
-    {
-      field: 'rating',
-      headerName: 'Rating',
-      type: 'number',
-      flex: 0.1,
-
-      cellClassName: (params) => {
-        return params.id >= 3 ? 'greenColor' : 'redColor';
-      },
-    },
-
-    {
-      field: 'actions',
-      flex: 0.1,
-      headerName: 'Actions',
-      type: 'number',
-      sortable: false,
-      renderCell: (params) => {
-        return (
-          <Fragment>
-            <Button onClick={() => deleteReviewHandler(params.id, productId)}>
-              <DeleteIcon />
-            </Button>
-          </Fragment>
-        );
-      },
-    },
-  ], [deleteReviewHandler, productId]);
 
   const rows = useMemo(() => {
     return reviews.map((item) => ({
-      id: item._id,
-      rating: item.rating,
-      comment: item.comment,
-      user: item.name,
+      'Product Id': item._id,
+      Rating: item.rating,
+      Comment: item.comment,
+      User: item.name,
+      pid: productId,
     }));
   }, [reviews]);
 
-  if (isLoading) {
+  const columnData = {
+    heading: ['User Id', 'Rating', 'Comment', 'User', 'Action'],
+    data: rows,
+    columnLength: 5,
+    gridCellTemplateColumn: '2fr 0.5fr 2fr 1fr 1fr',
+    viewDetailsButton: false,
+    ActionButtons: [<DeleteIcon/>],
+    ActionButtonsHandler: [deleteReviewHandler],
+    excludeData: ['pid'],
+  }
+
+  if (isLoading || deleteReviewLoading) {
     return <Loader/>
   }
 
@@ -117,7 +85,7 @@ const ProductReviews = () => {
             </div>
 
             <Button
-              id="createProductBtn"
+              id="createProductBtnReview"
               type="submit"
               disabled={
                 isLoading ? true : false || productId === '' ? true : false
@@ -128,19 +96,9 @@ const ProductReviews = () => {
           </form>
 
           {reviews.length > 0 ? (
-            <ThemeProvider theme={MuiTheme}>
-              <DataGrid
-                rows={rows}
-                columns={columns}
-                pageSize={10}
-                disableSelectionOnClick
-                className="productListTable"
-                autoHeight
-                loading={deleteReviewLoading}
-              />
-            </ThemeProvider>
+            <DataList data={columnData} />
           ) : (
-            <h2 className="productReviewsFormHeading">No Reviews Found</h2>
+            <h2 className="noReviewsFound">No Reviews Found</h2>
           )}
         </div>
       </div>

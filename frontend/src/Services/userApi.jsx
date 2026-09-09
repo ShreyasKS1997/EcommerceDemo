@@ -3,6 +3,9 @@ import { loadTestUsersAccount, storeAccount } from '../SliceThunks/userSliceThun
 
 const userApi = api.injectEndpoints({
        endpoints: (builder) => ({
+        getTestPassword: builder.query({
+            query: () => '/test_password',
+        }),
         deleteAllData: builder.mutation({
             query: () => ({
                 url: '/delete/all',
@@ -143,4 +146,4 @@ const userApi = api.injectEndpoints({
 
 });
 
-export const {useDeleteAllDataMutation, useResetPasswordMutation, useForgotPasswordMutation, useUpdatePasswordMutation, useUpdateTestUserProfileMutation, useTestUserDetailsByIDQuery, useUpdateProfileMutation, useLogoutMutation, useGenerateTestAdminMutation, useGenerateTestUserMutation, useLoadTestUsersQuery, useDeleteTestUserMutation, usePostLoginMutation, usePostRegisterMutation, useLoadUserQuery, useInitLoadQuery, useLazyLoadTestAdminQuery} = userApi;
+export const {useGetTestPasswordQuery, useDeleteAllDataMutation, useResetPasswordMutation, useForgotPasswordMutation, useUpdatePasswordMutation, useUpdateTestUserProfileMutation, useTestUserDetailsByIDQuery, useUpdateProfileMutation, useLogoutMutation, useGenerateTestAdminMutation, useGenerateTestUserMutation, useLoadTestUsersQuery, useDeleteTestUserMutation, usePostLoginMutation, usePostRegisterMutation, useLoadUserQuery, useInitLoadQuery, useLazyLoadTestAdminQuery} = userApi;

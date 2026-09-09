@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import Loader from "../loader/loader";
 import { useNavigate } from "react-router-dom";
 import { switchAccount, logoutAll } from "../../../SliceThunks/userSliceThunks.jsx";
+import { setLocationCity, setLocationPincode } from "../../../SliceThunks/locationSliceThunks.jsx";
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import { useLoadUserQuery, useLogoutMutation } from "../../../Services/userApi.jsx";
 import { api } from "../../../Services/api.jsx";
@@ -28,8 +29,12 @@ export const Navbar = () => {
     
     const [searchBoxVisible, setSearchBoxVisible] = useState(false);
     const [navLinksopen, SetNavLinksOpen] = useState(false);
+    const [locationBoxVisible, SetLoctationBoxVisible] = useState(false);
 
     const authStatus = useSelector((state) => state.auth.status);
+    const location = useSelector((state) => state.location);
+
+    const [pincode, setPincode] = useState(location.pincode);
 
     useGetCartItemsQuery(undefined, {skip: authStatus === 'unauthenticated'});
     const {cartItems} = useSelector((state) => state.cart);
@@ -64,7 +69,7 @@ export const Navbar = () => {
     const renderSearchResults = () => {       
 
         // Show <loader/> if loading, fetching or debouncing        
-        if (isLoading || debounceValue !== searchTerm || fetching) return <Loader style={{ height: '100%' }} />
+        if (loading || debounceValue !== searchTerm || fetching) return <Loader style={{ height: '100%' }} />
 
         // If error, show error. if no result found show the message
         if(!products || products.length === 0) {
@@ -118,22 +123,36 @@ export const Navbar = () => {
         }
     }
 
+    const handleLocationChangeClick = async(e, value) => {
+        e.stopPropagation();
+        e.preventDefault();
+        const response = await fetch(`https://api.postalpincode.in/pincode/${value}`);
+        
+        if (response.ok) {
+            const data = await response.json();
+            if (data[0].Status === 'Success') {
+                const mainPostOffice = data[0].PostOffice[0];
+                const city = mainPostOffice.Division || mainPostOffice.District;
+                dispatch(setLocationPincode(value));
+                dispatch(setLocationCity(city));
+            }
+        }
+    }
+
     useEffect(() => {
         // For small screen layout when all other layout should be blocked when nav-links are visible/opened
         if (navLinksopen) {
             document.body.style.overflow = 'hidden';
-            document.getElementById('root').style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
         }
 
-        return () => {
-            document.body.style.overflow = 'unset';
-            document.getElementById('root').style.overflow = 'unset';
-        };
+        return () => document.body.style.overflow = '';
     }, [navLinksopen]);
 
     return (
         <nav className="navBarCustom">
-            <div onClick={handleOpenNavLinkBoxCLick} className='openCloseNavbutton'></div>
+            <div onClick={handleOpenNavLinkBoxCLick} className='openNavButton'></div>
             {/* ---------------------------------------------- Company Logo -------------------------------------------------*/}
             <a href="/" className="companyLogoNav">ECOMMERCE</a>
 
@@ -157,51 +176,42 @@ export const Navbar = () => {
 
             {/* ---------------------------------------------- Navigation Links -------------------------------------------------*/}
             <div className={`nav-links ${!navLinksopen ? 'nav-links-hidden' : ''}`}> 
-
-                <div className="nav-links-background-dim"></div>
-
+                <div onClick={() => SetNavLinksOpen(false)} className="nav-links-background-dim"></div>
                 <div className="nav-links-main">
-
-
-                    <div onClick={handleOpenNavLinkBoxCLick} className='openCloseNavbutton'></div>
-
+                    <div onClick={handleOpenNavLinkBoxCLick} className='closeNavButton'></div>
                     {user && user.role !== 'user' && <button className="exitTestAdminUser" onClick={(e) => exitTestAdminOrUserMode(e)}>{user.role === "test_admin" ? 'Exit test admin' : 'Exit test user'}</button>}
-
                     {/* ------------------------------- Location Section -------------------------------------- */}
-                        
                         <div className="nav-link-item LocationInfo">
-                            {/* TODO: Create Selection of Location feature */}
-                            <div className="nav-link-item-sub locationInfoSub">
+                            <div onClick={() => SetLoctationBoxVisible(!locationBoxVisible)} className="nav-link-item-sub locationInfoSub">
                                 <div className="locationSub">
                                     Location
                                     <PlaceIcon />
                                 </div>
-                                <div className="stateAreaPincode">Select your Location</div>
+                                <div className="stateAreaPincode">{location.city ? location.city : 'Select your Location'}{location.pincode ? ` ${location.pincode}` : ''}</div>
                             </div>
-                            <div className="changeLocationBox">
+                            <div onClick={() => SetLoctationBoxVisible(false)} className={`changeLocationBoxDim ${locationBoxVisible ? 'visible' : 'hidden'}`}></div>
+                            <div className={`changeLocationBox ${locationBoxVisible ? 'visible' : 'hidden'}`}>
+                                <div onClick={() => SetLoctationBoxVisible(false)} className="closeIcon"></div>
                                 <div className="locationBoxLabel" >Enter your location</div>
-                                <input type="text" size="10" className="locationBoxInput"/>
-                                <input type="button" value="Change" className="locationBoxSubmit"/>
+                                <input value={pincode} onChange={(e) => setPincode(e.currentTarget.value)} type="text" size="10" className="locationBoxInput"/>
+                                <input onClick={(e) => handleLocationChangeClick(e, pincode)} type="button" value="Change" className="locationBoxSubmit"/>
                             </div>
                         </div>
-
-
                     {/* ---------------------------------- All Products Page Link ------------------------------------- */}
                     <a href="/products" className="nav-link-item">
                         <div className="nav-link-item-sub">Products</div>
                     </a>
-
-
                     {/* ---------------------------------- Accounts Section -------------------------------------------- */}
                     <div className="nav-link-item accountLoginSignup">
                         <a href={`${(authStatus === 'authenticated' && user) ? "/account" : "/login"}`} 
                             className="nav-link-item-acc nav-link-item-sub" >
                             <AccountCircleOutlinedIcon/>
-                            {isLoading ? <Skeleton/> : 
-                                <div>{`${(authStatus === 'authenticated' && user) ? 
-                                    user.name : 
-                                    "Login/Signup"}`}
-                                </div>
+                            {
+                                isLoading ? <Skeleton/> : 
+                                    <div>{`${(authStatus === 'authenticated' && user) ? 
+                                        user.name : 
+                                        "Login/Signup"}`}
+                                    </div>
                             }
                         </a>   
                         {user && 
@@ -214,8 +224,6 @@ export const Navbar = () => {
                             </div>
                         }
                     </div>
-
-
                     {/* ---------------------------------- Cart Section -------------------------------------------- */}
                     <div className="nav-link-item">
                         <a href="/cart" className="nav-link-item-sub cartInfo">
@@ -229,6 +237,10 @@ export const Navbar = () => {
                             <div>Cart</div>
                         </a>
                     </div>
+
+                    {authStatus === 'authenticated' && <a onClick={(e) => handleLogout(e)} className="nav-link-item logoutBtnSmallScrn">
+                        <div className="nav-link-item-sub">Logout</div>
+                    </a>}
                 </div>
             </div>
         </nav>

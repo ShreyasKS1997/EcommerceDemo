@@ -10,67 +10,39 @@ import LaunchIcon from '@mui/icons-material/Launch';
 import { useGetOrderQuery } from '../../Services/orderApi';
 import { MuiTheme } from '../../MuiTheme';
 import { Button, ThemeProvider } from '@mui/material';
+import { DataList } from '../../DataList';
 
 const MyOrders = () => {
   const navigate = useNavigate();
 
-  const {data: {orders} = {}, isLoading: orderLoading} = useGetOrderQuery();
+  const {data, isLoading: orderLoading} = useGetOrderQuery();
 
-  const columns = [
-    { field: 'id', headerName: 'Order ID', minWidth: 300, flex: 0.2 },
-    
-    {
-      field: 'status',
-      headerName: 'Status',
-      minWidth: 150,
-      flex: 0.2,
-      cellClassName: (params) => {
-        return params.row.status === 'Delivered' ? 'greenColor' : 'redColor';
-      },
-    },
-    {
-      field: 'itemsQty',
-      headerName: 'Items Qty',
-      type: 'number',
-      minWidth: 150,
-      flex: 0.1,
-    },
+  const orders = data?.orders ?? [];
 
-    {
-      field: 'amount',
-      headerName: 'Amount',
-      type: 'number',
-      minWidth: 270,
-      flex: 0.1,
-    },
-
-    {
-      field: 'actions',
-      flex: 0.1,
-      headerName: 'Actions',
-      minWidth: 150,
-      type: 'number',
-      sortable: false,
-      renderCell: (params) => {
-        return (
-          <Button onClick={() => navigate(`/order/${params.row.id}`)}>
-            <LaunchIcon />
-          </Button>
-        );
-      },
-    },
-  ];
   const rows = [];
 
-  orders &&
-    orders.forEach((item, index) => {
-      rows.push({
-        itemsQty: item.orderItems.length,
-        id: item._id,
-        status: item.orderStatus,
-        amount: item.totalPrice,
-      });
-    });
+  orders.forEach((item) => {
+    rows.push({
+      'Order Id': item._id,
+      Item: item.orderItems.length,
+      Status: item.orderStatus,
+      Amount: item.totalPrice,
+    })
+  })
+
+  const handleOnViewDetailsCLick = (orderDetails, event) => {
+    event.stopPropagation();
+    navigate(`/order/${orderDetails['Order Id']}`);
+  }
+
+  const columnData = {
+    heading: ['Order Id', 'Item', 'Status', 'Amount'],
+    data: rows,
+    columnLength: 5,
+    gridCellTemplateColumn: '2.5fr 1fr 1.5fr 1fr 1fr',
+    viewDetailsButton: true,
+    viewDetailsButtonAction: handleOnViewDetailsCLick,
+  };
 
   if (orderLoading) {
     return <Loader/>
@@ -81,21 +53,7 @@ const MyOrders = () => {
       <MetaData title={'My Orders'} />
         <div className="myOrdersPage">
           <Typography id="myOrdersHeading">Your Orders</Typography>
-          <ThemeProvider theme={MuiTheme}>
-            <DataGrid
-              rows={rows}
-              columns={columns}
-              sx={{
-                flex: 0,
-                '.greenColor > div': { color: 'green' },
-                '.redColor > div': { color: 'red' },
-              }}
-              pageSize={10}
-              disableRowSelectionOnClick
-              className="myOrdersTable"
-              autoHeight={true}
-            />
-          </ThemeProvider>
+          <DataList data={columnData}/>
         </div>
     </>
   );

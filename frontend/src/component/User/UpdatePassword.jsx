@@ -80,7 +80,7 @@ const UpdatePassword = () => {
       <MetaData title="Change Password" />
       <div className="updatePasswordContainer">
         <div className="updatePasswordBox">
-          <h2 className="updatePasswordHeading">Update Password</h2>
+          <h3 className="updatePasswordHeading">Update Password</h3>
           {isSuccess && <div className='successMsg'><h4>Success</h4></div>}
           <form
             className="updatePasswordForm"

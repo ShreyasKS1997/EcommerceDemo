@@ -4,8 +4,7 @@ import Loader from '../layout/loader/loader';
 import Product from './ProductCard';
 import { useSearchParams } from 'react-router-dom';
 import Pagination from 'react-js-pagination';
-import Slider from '@mui/material/Slider';
-import { Typography } from '@mui/material';
+import { Box, Typography, Slider } from '@mui/material';
 import MetaData from '../layout/MetaData';
 import { useGetAllProductsQuery } from '../../Services/productApi';
 
@@ -35,6 +34,8 @@ const Products = () => {
 
   const [ratingsServer, setRatingsServer] = useState(0);
 
+  const [filterOpen, setFilterOpen] = useState(false);
+
   const searchParams = useSearchParams();
 
   const key = searchParams[0].get('keyword');
@@ -54,6 +55,11 @@ const Products = () => {
     setCurrentPage(e);
   };
 
+  const handleFilterHideClick = (e) => {
+    e.preventDefault();
+    setFilterOpen(!filterOpen);
+  }
+
   if (isLoading || isFetching) {
     return <Loader />
   }
@@ -67,9 +73,16 @@ const Products = () => {
       
       <MetaData title="PRODUCTS .. ECOMMERCE" />
 
-      <div className="filterBox">
+      <div className='M-Filter-Button'>
+        <button onClick={handleFilterHideClick}>
+          Filter
+          <div className={`filterButton ${filterOpen ? 'visible' : 'hidden'}`}></div>
+        </button>
+      </div>
+      <div className={`filterBox ${filterOpen ? 'visible' : 'hidden'}`}>
         <div className='price'>
-          <Typography>Price</Typography>
+          <Typography sx={{'@media (max-width: 750px)': {padding: '0.7rem'}}}>Price</Typography>
+          <Box sx={{width: '100%', '@media (max-width: 750px)': {px: 5}}}>
           <Slider
             value={priceLocal}
             onChange={(e, newPrice) => setPriceLocal(newPrice)}
@@ -79,6 +92,7 @@ const Products = () => {
             min={0}
             max={200000}
           />
+          </Box>
         </div>
 
         <div className='category'>
@@ -110,6 +124,11 @@ const Products = () => {
             valueLabelDisplay="auto"
             min={0}
             max={5}
+            sx={{
+              '& .MuiSlider-valueLabel': {
+
+              }
+            }}
           />
         </fieldset>
       </div>
@@ -118,10 +137,12 @@ const Products = () => {
         <div className="products">
           <h2 className="productsHeading">Products</h2>
           <div className="productsList">
-          {products &&
+          {products && products.length > 0 ?
             products.map((product) => (
               <Product key={product._id} product={product} />
-            ))}
+            )) :
+            <div className='noProductsFound'>No Products found</div>
+          }
           </div>
         </div>
 

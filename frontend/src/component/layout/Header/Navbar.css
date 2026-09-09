@@ -3,6 +3,10 @@ a {
     color: inherit;
 }
 
+.screenLock {
+    overflow: hidden;
+}
+
 .navBarCustom, .navBarSearchboxWrap{
     position: relative;
 }
@@ -20,7 +24,7 @@ a {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
 }
 
 .navBarCustom {
@@ -93,6 +97,7 @@ a {
     color: black;
     border-radius: 4px 4px 10px 10px;
     box-shadow: 0 4px 12px 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
 }
 
 .suggestionBox.visible {
@@ -185,7 +190,6 @@ a {
     box-sizing: border-box;
     padding: 5px;
     border-radius: 5px;
-    height: 100%;
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
     font-size: 0.9rem;
 }
@@ -208,8 +212,6 @@ a {
 
 .accountLoginSignup {
     display: flex;
-    align-items: center;
-    height: 100%;
     gap: 5px;
     line-height: 0;
 }
@@ -244,12 +246,13 @@ a {
     cursor: pointer;
 }
 
-.openCloseNavbutton {
+.openNavButton {
     z-index: 1;
     display: none;
+    align-self: center;
+    justify-content: center;
     height: 21px;
     width: 21px;
-    align-self: flex-start;
     margin: 15px;
     border: none;
     background-image: 
@@ -274,8 +277,24 @@ a {
     transition: transform 0.2s ease-in-out 0.1s;
 }
 
-.openCloseNavbutton:hover {
+.closeNavButton {
+    display: none;
+    height: 15px;
+    width: 15px;
+    background: linear-gradient(45deg, transparent 45%, white 45%, white 55%, transparent 55%),
+                linear-gradient(-45deg, transparent 45%, white 45%, white 55%, transparent 55%);
+    align-self: flex-end;
+    margin: 0.8rem
+}
+
+.openNavButton:hover,.closeNavButton:hover {
     cursor: pointer;
+    opacity: 0.7;
+}
+
+/* Main Screen Size */
+.exitTestAdminUser {
+    align-self: center;
 }
 
 
@@ -314,6 +333,19 @@ a {
     transform: translateX(-50%);
 }
 
+.changeLocationBoxDim {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.397);
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+}
 
 .changeLocationBox {
     box-sizing: border-box;
@@ -323,10 +355,10 @@ a {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 10px;
+    padding: 10px 20px;
     border-radius: 6px;
     box-shadow: 0 4px 12px 5px rgba(0, 0, 0, 0.1);
-    gap: 5px;
+    gap: 10px;
     background-color: var(--primary-color);
     visibility: hidden;
     opacity: 0;
@@ -406,9 +438,112 @@ a {
     line-height: 0;
 }
 
+/* Main Screen size */
+.logoutBtnSmallScrn {
+    display: none !important;
+}
+
+@media screen and (max-width: 1200px) {
+    .navBarCustom {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+    .companyLogoNav {
+        order: 1;
+    }
+
+    .navBarSearchboxWrap {
+        order: 3;
+        flex-basis: 100%;
+    }
+
+    .nav-links {
+        order: 2;
+    }
+
+    .changeLocationBoxDim.visible {
+        opacity: 1;
+        visibility: visible;
+        height: 100%;
+        width: 100%;
+        transition: visibility 0.1s ease, opacity 0.2s ease 0.1s;
+        z-index: 2;
+    }
+    
+    .changeLocationBoxDim.hidden {
+        opacity: 0;
+        visibility: hidden;
+        height: 0;
+        width: 0;
+        transition: visibility 0.1s ease 0.2s, height 0.1s ease 0.2s, width 0.1s ease 0.2s, opacity 0.2s ease;
+    }
+
+    .changeLocationBox {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: visibility 0.1s ease, opacity 0.2s ease 0.1s ;
+        box-shadow: 0 0 7px 1px rgb(42, 62, 173);
+    }
+
+    .locationInfoSub:hover ~ .changeLocationBox, .changeLocationBox:hover {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .changeLocationBox.visible {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    .changeLocationBox.hidden {
+        visibility: hidden !important;
+        opacity: 0 !important;
+        transition: opacity 0.2s ease, visibility 0.1s ease 0.2s;
+    }
+
+    .changeLocationBox::before {
+        display: none;
+    }
+
+    .closeIcon {
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-self: flex-end;
+        justify-content: flex-end;
+    }
+
+    .closeIcon::before,
+    .closeIcon::after {
+        content: '';
+        position: absolute;
+        width: 2px;
+        height: 20px;
+        background-color: white;
+    }
+
+    .closeIcon::before {
+        transform: rotate(45deg);
+    }
+
+    .closeIcon::after {
+        transform: rotate(-45deg);
+    }
+
+}
+
 @media screen and (max-width: 900px) { 
 
-    .openCloseNavbutton {
+    .navBarCustom {
+        flex-wrap: nowrap;
+    }
+
+    .openNavButton,.closeNavButton {
         display: flex;
         flex-shrink: 0;
     }
@@ -416,7 +551,6 @@ a {
     .nav-links {
         position: fixed;
         display: flex;
-        flex-direction: column;
         z-index: 1;
         height: 100%;
         background-color: rgba(13, 48, 66);
@@ -448,6 +582,7 @@ a {
         height: 100%;
     }
 
+    /* Smaller screen size */
     .exitTestAdminUser{
         margin: 20px;
     }
@@ -473,7 +608,11 @@ a {
     .nav-links-hidden {
         transform: translateX(-100%);
         opacity: 0;
-        visibility: 0;
+        visibility: hidden;
+    }
+
+    .changeLocationBox {
+        width: auto !important;
     }
 
     .cartItems {
@@ -481,29 +620,36 @@ a {
         left: 25px;
     }
 
-    .changeLocationBox {
-        display: none;
+    /* Smaller screen size */
+    .logoutBtnSmallScrn {
+        display: inline-block !important;
     }
 }
 
 @media screen and (max-width: 750px) {
 
+    .openNavButton {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
     .navBarCustom {
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto;
     }
 
     .companyLogoNav {
-        position: relative;
-        transform: translateY(-100%);
+        grid-row: 1;
+        grid-column: 1 / -1;
         justify-content: center;
+        margin: auto;
     }
 
-    .companyLogoNav {
-        display: flex;
-        align-items: center;
-        margin: 0 100px;
+    .navBarSearchboxWrap {
+        grid-row: 2;
+        grid-column: 1 / -1;
+        margin: 13px 10px;
     }
-
 
 }

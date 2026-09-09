@@ -20,6 +20,7 @@ const {
   refreshToken,
   loadTestUsers,
   deleteAllUserData,
+  getTestPassword,
 } = require('../controllers/userController');
 
 const router = express.Router();
@@ -59,5 +60,7 @@ router.route('/auth/refresh').get(refreshToken);
 router.route('/admin/user/:id').put(isAuth, updateUserRole);
 
 router.route('/delete/all').delete(isAuth, deleteAllUserData);
+
+router.route('/test_password').get(getTestPassword);
 
 module.exports = router;

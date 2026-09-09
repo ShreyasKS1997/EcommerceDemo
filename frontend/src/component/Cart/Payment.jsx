@@ -113,7 +113,7 @@ const Payment = () => {
           } catch(error) {
             setPaymentProcessing(false);
             payBtn.current.disabled = false;
-            console.log(error)
+
           }
         } else {
           //handle error alert message
@@ -133,8 +133,7 @@ const Payment = () => {
       <MetaData title="Payment" />
       <CheckoutSteps activeStep={2} />
       <div className="paymentContainer">
-        <h3>Use 4242424242424242 as card number with any future date</h3>
-        <h3>and any value for CVC to test placing the order</h3>
+        <h3>Use 4242424242424242 as card number with any future date and any value for CVC to test placing the order</h3>
         <form className="paymentForm" onSubmit={(e) => submitHandler(e)}>
           <Typography fontSize='20px'>Card Info</Typography>
           <div>

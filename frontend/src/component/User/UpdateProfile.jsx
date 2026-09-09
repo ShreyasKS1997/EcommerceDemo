@@ -77,6 +77,8 @@ const UpdateProfile = () => {
             encType="multipart/form-data"
             onSubmit={updateProfileSubmit}
           >
+          <div><p>The Name and profile image resets back to default after 5 minutes.</p></div>
+          <p>The Value is updated only when anyone logs into this account the next time.</p>
             <div className="updateProfileName">
               <FaceIcon />
               <input
@@ -101,13 +103,18 @@ const UpdateProfile = () => {
             </div>
 
             <div id="updateProfileImage">
-              <img src={avatarPreview} alt="Avatar Preview" />
-              <input
-                type="file"
-                name="avatar"
-                accept="image/*"
-                onChange={updateProfileDataChange}
-              />
+              <div>
+                <img src={avatarPreview} alt="Avatar Preview" />
+              </div>
+              <label className="custom-file-upload">
+                <input 
+                  type="file" 
+                  name='avatar'
+                  accept='image/'
+                  onChange={updateProfileDataChange}
+                />
+                Choose File
+              </label>
             </div>
             <input
               type="submit"
