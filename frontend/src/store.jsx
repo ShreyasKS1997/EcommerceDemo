@@ -41,6 +41,7 @@ export const store = configureStore({
         if (action.type.startsWith('@@')) return false;
         if (action.type.startsWith('persist/')) return false;
         if (action.type.includes('executeQuery') || action.type.includes('executeMutation')) return false;
+        if (action.type.startsWith('app/addNotification')) return false;
         const allowedPrefixes = ['order/', 'cart/', 'auth/', 'app/'];
         const isAllowedFeature = allowedPrefixes.some((prefix) => action.type.startsWith(prefix));
         return isAllowedFeature;
