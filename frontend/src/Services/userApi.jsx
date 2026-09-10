@@ -53,7 +53,6 @@ const userApi = api.injectEndpoints({
                 url: '/me/update',
                 method: 'PUT',
                 body: body,
-                FormData: true,
             }),
             invalidatesTags: ['refreshTestUsers']
         }),
