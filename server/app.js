@@ -19,7 +19,7 @@ if (process.env.RENDER === 'true') {
   require('dotenv').config({ path: 'server/config/config.env' });
 }
 
-app.use(express.json({limit: '2mb'}));
+app.use(express.json({limit: '5mb'}));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true }));
 app.use(fileUpload());
