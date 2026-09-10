@@ -21,14 +21,10 @@ const UpdateProfile = () => {
   const updateProfileSubmit = async(e) => {
     e.preventDefault();
 
-    const myForm = new FormData();
-
-    name && myForm.set('name', name);
-    email && myForm.set('email', email);
-    avatar && myForm.set('avatar', avatar);
+    const data = {name, email, avatar};
 
     try {
-      await updateProfile(myForm).unwrap();
+      await updateProfile(data).unwrap();
       await refetch();
       setTimeout(() => {
         navigate(-1, {replace: true});
@@ -102,6 +98,7 @@ const UpdateProfile = () => {
               />
             </div>
 
+            <h5>Max image file size is 2mb</h5>
             <div id="updateProfileImage">
               <div>
                 <img src={avatarPreview} alt="Avatar Preview" />

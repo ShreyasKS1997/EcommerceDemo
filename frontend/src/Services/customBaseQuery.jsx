@@ -90,9 +90,10 @@ export const baseQuery = async (args, api, extraOptions ) => {
         }
 
         if (res.error && res.error.data && !['NO_SESSION', 'NO_TOKEN', 'ACCESS_TOKEN_EXPIRED', 'SESSION_REVOKED', 'Grace session period exceeded'].includes(res.error.data?.error.message)) {
-            Object.values(res.error.data?.error.messageObject).forEach((item, index) => {
+            const msgObj = res.error.data?.error;
+            const finalMsg = msgObj.messageObject ? msgObj.messageObject : {error: msgObj.message};
+            Object.values(finalMsg).forEach((item, index) => {
                     setTimeout(() => {
-                        console.log(item)
                         api.dispatch(addNotification({message:item, errorType: 'error'}))
                     }, 1000 * index);
                 }
