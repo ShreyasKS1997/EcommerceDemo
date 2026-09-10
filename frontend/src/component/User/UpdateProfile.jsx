@@ -98,7 +98,7 @@ const UpdateProfile = () => {
               />
             </div>
 
-            <h5>Max image file size is 2mb</h5>
+            <h5>Max image file size is 5mb</h5>
             <div id="updateProfileImage">
               <div>
                 <img src={avatarPreview} alt="Avatar Preview" />
