@@ -20,8 +20,14 @@
   font-size: clamp(0.7rem, 1vw, 1.7rem);
 }
 
+.bannerContainer > h4 {
+  color: rgb(203, 233, 248);
+  font-size: medium;
+}
+
 .bannerContainer > h1,
-.bannerContainer > h2 {
+.bannerContainer > h2,
+.bannerContainer > h4 {
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
   text-align: center;
 }
@@ -36,6 +42,7 @@
   transition: all 0.2s;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
   font-size: 1em;
+  margin-bottom: 15vh;
 }
 
 .bannerContainer > a > button:hover {
@@ -74,6 +81,11 @@
 }
 
 @media screen and (max-width: 430px) {
+
+  .banner {
+    height: 85vh;
+  }
+
   .banner::after {
     width: 0;
     height: 0;
@@ -81,6 +93,10 @@
 
   .bannerContainer {
     padding: 30px;
+  }
+
+  .bannerContainer > a > button {
+    margin-bottom: 0;
   }
 
   .bannerContainer > h1 h2 {
