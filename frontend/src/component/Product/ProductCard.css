@@ -12,6 +12,7 @@
   border: 1px solid rgba(75, 74, 74, 0.1);
   min-width: 130px;
   justify-self: center;
+  margin: 10px;
 }
 
 .productCard > img {
