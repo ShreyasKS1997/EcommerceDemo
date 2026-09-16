@@ -3,7 +3,7 @@
 Full-stack responsive e-commerce application built with React,
 Node.js, Express, MongoDB, Redux Toolkit and RTK Query.
 
-🔗 Live Demo: `https://demcom.onrender.com/`
+🔗 Live Demo: [https://demcom.onrender.com/](https://demcom.onrender.com/)
 
 ---
 
