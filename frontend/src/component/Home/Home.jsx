@@ -18,7 +18,7 @@ const Home = () => {
           <div className='banner1'>
             <h1>This is a demo E-Commerce website</h1>
             <h4>To test this website go to login page which contains test account credentials and login.
-              Or you could register using your real email address too and request to remove all the profile data you entered permanently after testing.</h4>
+              Or you could register using your real email address too and remove all the profile data you entered permanently after testing with click of a button on the Profile Page.</h4>
               <h4>Click below to see the list of features, technical highlights, 
               security implementation and complete functionality behind this e-commerce demo.</h4>
               <a href='/features'>
