@@ -1,0 +1,26 @@
+.featuresList {
+    padding: 2rem;
+    color: rgb(17, 17, 17);
+    background-color: rgb(248, 248, 248);
+}
+
+.featuresList > h1, .featuresList > h2 {
+    margin: 2rem 0 1rem;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    color: rgb(17, 17, 17);
+}
+
+.featuresList > h4 {
+    font-family: 'Robodo', Arial, Helvetica, sans-serif;
+    color: rgb(59, 59, 59);
+}
+
+.featuresList > ul{
+    font-family: 'Robodo', Arial, Helvetica, sans-serif;
+    color: rgb(59, 59, 59);
+}
+
+.featuresList > ul > li {
+    margin: 0.5rem;
+    font-weight: 600;
+}

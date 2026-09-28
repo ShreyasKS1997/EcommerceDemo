@@ -6,7 +6,7 @@
   align-items: center;
   width: 100%;
 }
-.newProductContainer h2, h4{
+.newProductContainer h2, .newProductContainer > h4{
   color: rgba(0, 0, 0, 0.733);
   text-align: center;
 }

@@ -7,6 +7,7 @@ import ProductDetails from './component/Product/ProductDetails.jsx';
 import Products from './component/Product/Products.jsx';
 import LoginSignUp from './component/User/LoginSignUp.jsx';
 import UpdateProfile from './component/User/UpdateProfile.jsx';
+import FeaturesList from './component/Home/FeaturesList.jsx';
 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
@@ -104,6 +105,7 @@ function App() {
                   />
                   <Route exact path="/about" element={<About />} />
                   <Route exact path="/contact" element={<Contact />} />
+                  <Route exact path="/features" element={<FeaturesList />} />
 
                   <Route element={<ProtectedRoute />}>
                       <Route exact path="/account" element={<Profile />} />

@@ -3,37 +3,32 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vmin;
-  min-height: 400px;
   position: relative;
+  display: flex;
 }
 
 .bannerContainer {
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
   flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
+  background-color: rgba(0, 0, 0, 0.699);
+  color: rgb(203, 233, 248);
   width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: rgb(203, 233, 248);
-  font-size: clamp(0.7rem, 1vw, 1.7rem);
 }
 
-.bannerContainer > h4 {
+.bannerContainer > div > h4 {
   color: rgb(203, 233, 248);
-  font-size: medium;
 }
 
-.bannerContainer > h1,
-.bannerContainer > h2,
-.bannerContainer > h4 {
+.bannerContainer> div > h1,
+.bannerContainer> div > h2,
+.bannerContainer> div > h4 {
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
   text-align: center;
 }
 
-.bannerContainer > a > button {
-  margin-bottom: 5vmax;
+.bannerContainer > div > a > button {
   cursor: pointer;
   background-color: white;
   border: 1px solid white;
@@ -41,25 +36,37 @@
   padding: 0.8em 1.5em;
   transition: all 0.2s;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-  font-size: 1em;
-  margin-bottom: 15vh;
+  font-size: 0.8em;
 }
 
-.bannerContainer > a > button:hover {
+.bannerContainer > div > a > button:hover {
   background-color: rgba(255, 255, 255, 0);
   color: white;
 }
 
-.banner::after {
+.bannerAfter {
   content: '';
   width: 100%;
-  height: 100%;
   background-color: white;
-  position: absolute;
-  top: 0;
-  left: 0;
-  clip-path: polygon(100% 68%, 0 100%, 100% 100%);
   max-width: 100%;
+  clip-path: polygon(100% 0, 0 100%, 100% 100%);
+  height: 30vh;
+  position: relative;
+  top: 1px;
+}
+
+.banner1{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  line-height: 2rem;
+  max-width: 600px;
+  margin: 3rem auto 0;
+}
+
+.banner1 > h1,.banner1 > h4 {
+  margin: 1rem;
 }
 
 .homeHeading {
@@ -82,19 +89,6 @@
 
 @media screen and (max-width: 430px) {
 
-  .banner {
-    height: 85vh;
-  }
-
-  .banner::after {
-    width: 0;
-    height: 0;
-  }
-
-  .bannerContainer {
-    padding: 30px;
-  }
-
   .bannerContainer > a > button {
     margin-bottom: 0;
   }
@@ -102,7 +96,7 @@
   .bannerContainer > h1 h2 {
     margin: 20px 0;
   }
-
+ 
   .homeHeading {
     margin-top: 20px;
   }
