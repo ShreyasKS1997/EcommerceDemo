@@ -15,19 +15,27 @@ const Home = () => {
       <MetaData title="Home Page" />
       <div className="banner">
         <div className='bannerContainer'>
-          <h1>This is a demo E-Commerce website</h1>
-          <h4>To test this website go to login page which contains test account credentials and login. </h4>
-          <h4>Or you could register using your real email address too</h4>
-          <h4>and request to remove all the profile data you entered permanently after testing.</h4>
-          <h1>Welcome to Ecommerce</h1>
-          <h2>FIND AMAZING PRODUCTS BELOW</h2>
-
-          <a href="#container">
-            <button>
-              Scroll <CgMouse />
-            </button>
-          </a>
+          <div className='banner1'>
+            <h1>This is a demo E-Commerce website</h1>
+            <h4>To test this website go to login page which contains test account credentials and login.
+              Or you could register using your real email address too and request to remove all the profile data you entered permanently after testing.</h4>
+              <h4>Click below to see the list of features, technical highlights, 
+              security implementation and complete functionality behind this e-commerce demo.</h4>
+              <a href='/features'>
+              <button>
+                Check out features list
+              </button>
+            </a>
+              <h4>OR</h4>
+            <a href="#container">
+              <button>
+                Scroll down <CgMouse />
+              </button>
+            </a>
+          </div>
+          <div className='bannerAfter'></div>
         </div>
+    
       </div>
 
       <div className='bannerCoverDim'></div>
